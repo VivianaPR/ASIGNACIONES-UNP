@@ -1,6 +1,6 @@
 import { Tabs } from "react-bootstrap";
 import { TabVentana, CustomeTable } from "eco-unp/ui";
-import { columnsLeader, dataLeader } from "./config/BandejaLider";
+import { columnsLeader, dataLeader } from "./config/TablaRegistrosLider";
 import { ModalRegistro } from "../modals/ModalRegistro";
 
 export function BandejaCasosLider (){
@@ -29,7 +29,6 @@ export function BandejaCasosLider (){
             <TabVentana eventKey={"tab2"} title={"Asignaciones"}>
                 <p>Chao</p>
             </TabVentana>
-
         </Tabs>
     )
     

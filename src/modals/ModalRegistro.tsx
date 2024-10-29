@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaUser, FaAlignJustify, FaUsers, FaUserShield, FaUserTag } from "react-icons/fa6";
 import { SubtituloForm } from "eco-unp/ui";
 import { Form, FormGroup, FormSelect } from "react-bootstrap";
+import AnexosSolicitante from "../shared/components/Anexos";
 
 export function ModalRegistro(row: any) {
     // Simulando datos obtenidos desde la base de datos
@@ -123,6 +124,5 @@ export function ModalRegistro(row: any) {
                     placeholder="Escribe aquí una observación sobre el caso..."
                 />
             </FormGroup>
-        </>
-    );
+ </>)
 }

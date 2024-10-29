@@ -49,16 +49,7 @@ export const columnsLeader = [
         label: 'Zona',
         
     },
-    {
-        key: 'anexos',
-        label: 'Anexos',
-        
-        renderComponent: (row: any) =>
-            <button className="btn custom-button" onClick={() => alert(`Documentacion anexa de ${row.nombre}`)}>
-                <FaEye />
-            </button>
-        
-    },
+    
 ]
 
 export const dataLeader = [

@@ -35,10 +35,8 @@ export function ModalRegistroAnalista(row: any) {
             Seleccione...
           </option>
           <option value="1">Devolver a Servicio al Ciudadano</option>
-          <option value="2">
-            Confirmar y enviar a asignación de analista de riesgo
-          </option>
-          <option value="3">Otra Opción...</option>
+          <option value="2">Confirmar y enviar a asignación de analista de riesgo</option>
+          <option value="3">Remitir a Subdirección Especializada de Protección</option>
         </FormSelect>
       </FormGroup>
 

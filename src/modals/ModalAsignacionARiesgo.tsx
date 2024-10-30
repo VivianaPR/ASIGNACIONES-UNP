@@ -14,9 +14,7 @@ export function ModalAsignacionARiesgo(row: any) {
             <SubtituloForm subtitulo={"Analista de Riesgo "} icon={FaUser} />
             <FormGroup>
                 <FormSelect>
-                    <option value="0" disabled>
-                        Seleccione...
-                    </option>
+                    <option value="">Seleccione...</option>
                     <option value="1">Diego Alejandro Castañeda Herrera</option>
                     <option value="2">Julian Buitrago </option>
                     <option value="3">Carlos Pinzon</option>

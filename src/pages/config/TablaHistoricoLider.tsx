@@ -1,7 +1,7 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
-export const columnsHistoricoAnalista = [
+export const columnsHistoricoLider = [
     {
         key: 'solicitud',
         label: 'Solicitud',
@@ -24,8 +24,8 @@ export const columnsHistoricoAnalista = [
         label: 'Numero de Identificación',
     },
     {
-        key: 'genero',
-        label: 'Celular o teléfono',
+        key: 'celular',
+        label: 'Teléfono o Celular',
     },
     {
         key: 'correo',
@@ -39,10 +39,18 @@ export const columnsHistoricoAnalista = [
         key: 'municipio',
         label: 'Municipio',
     },
+    {
+        key: 'asignaciones',
+        label: 'Analista de Asignaciones',
+    },
+    {
+        key: 'riesgo',
+        label: 'Analista de Riesgo',
+    },
     
 ]
 
-export const dataHistoricoAnalista = [
+export const dataHistoricoLider = [
     {
         solicitud: 3,
         registro: '00001',
@@ -50,10 +58,12 @@ export const dataHistoricoAnalista = [
         dias_habiles: '9',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     },
     {
         solicitud: 1,
@@ -62,10 +72,12 @@ export const dataHistoricoAnalista = [
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 4,
         registro: '00001',
@@ -73,10 +85,12 @@ export const dataHistoricoAnalista = [
         dias_habiles: '25',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     }, {
         solicitud: 2,
         registro: '00001',
@@ -84,10 +98,12 @@ export const dataHistoricoAnalista = [
         dias_habiles: '17',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     },
     {
         solicitud: 4,
@@ -96,22 +112,26 @@ export const dataHistoricoAnalista = [
         dias_habiles: '5',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     },
     {
-        solicitud: 1,
+        solicitud: 5,
         registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 3,
         registro: '00001',
@@ -119,10 +139,12 @@ export const dataHistoricoAnalista = [
         dias_habiles: '18',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 2,
         registro: '00001',
@@ -130,9 +152,11 @@ export const dataHistoricoAnalista = [
         dias_habiles: '35',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     },
 ]

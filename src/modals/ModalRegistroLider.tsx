@@ -14,9 +14,7 @@ export function ModalRegistroLider(row: any) {
       <SubtituloForm subtitulo={"Analista de Asignaciones "} icon={FaUser} />
       <FormGroup>
         <FormSelect>
-          <option value="0" disabled>
-            Seleccione...
-          </option>
+          <option value="">Seleccione...</option>
           <option value="1">Juan Camilo Medina gutierrez</option>
           <option value="2">Lukas Felipe Rodriguez Lopez</option>
           <option value="3">Andres Julian Perez Sosa</option>

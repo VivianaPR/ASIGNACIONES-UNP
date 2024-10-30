@@ -7,7 +7,7 @@ import { BandejaCasosAnalista } from './pages/BandejaCasosAnalista';
 
 function App() {
   return (
-    <VentanaLienzo>
+
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<Navigate to = "/bandeja-casos-lider"/>} />
@@ -15,7 +15,7 @@ function App() {
           <Route path="/bandeja-casos-analista" element={<BandejaCasosAnalista />} />
         </Routes>
       </BrowserRouter>
-    </VentanaLienzo>
+
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { BsArrowUpCircleFill, BsExclamationCircleFill, BsFillAwardFill, BsArrowRepeat } from 'react-icons/bs';
+import { FaBalanceScale, FaExclamationTriangle, FaSync, FaClock } from "react-icons/fa";
+import { TbHexagonNumber1Filled } from "react-icons/tb";
 
 interface IconTooltipProps {
     solicitud: number;
@@ -16,24 +17,29 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
 
     switch (solicitud) {
         case 1:
-            tooltipText = "Servicio al Ciudadano";
-            variant = "success";
-            Icon = BsArrowUpCircleFill;
-            break;
-        case 2:
             tooltipText = "Caso de Emergencia";
             variant = "danger";
-            Icon = BsExclamationCircleFill;
+            Icon = FaExclamationTriangle;
+            break;
+        case 2:
+            tooltipText = "Caso Jurídico";
+            variant = "warning";
+            Icon = FaBalanceScale;
             break;
         case 3:
-            tooltipText = "Caso Jurídico";
-            variant = "secondary";
-            Icon = BsFillAwardFill;
+            tooltipText = "Reasignación";
+            variant = "primary";
+            Icon = FaSync;
             break;
         case 4:
-            tooltipText = "Reasignación";
-            variant = "warning";
-            Icon = BsArrowRepeat;
+            tooltipText = "Primera Vez";
+            variant = "success";
+            Icon = TbHexagonNumber1Filled;
+            break;
+        case 5:
+            tooltipText = "Reevaluacion por Temporalidad";
+            variant = "secondary";
+            Icon = FaClock;
             break;
         default:
             return null;

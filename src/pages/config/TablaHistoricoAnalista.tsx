@@ -1,24 +1,19 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
-export const columnsRegistrosLider = [
+export const columnsHistoricoAnalista = [
     {
         key: 'solicitud',
         label: 'Solicitud',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro_tablaRegistrosLider',
+        key: 'registro',
         label: 'Registro',
-        hasModal: true
     },
     {
         key: 'radicado',
         label: 'Radicado',
-    },
-    {
-        key: 'dias_habiles',
-        label: 'Días hábiles',
     },
     {
         key: 'nombre',
@@ -47,10 +42,10 @@ export const columnsRegistrosLider = [
     
 ]
 
-export const dataRegistrosLider = [
+export const dataHistoricoAnalista = [
     {
         solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '9',
         nombre: 'Lukas rendon',
@@ -62,7 +57,7 @@ export const dataRegistrosLider = [
     },
     {
         solicitud: 1,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
@@ -73,7 +68,7 @@ export const dataRegistrosLider = [
         municipio: 'Bogotá D.C.',
     }, {
         solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '25',
         nombre: 'Lukas rendon',
@@ -84,7 +79,7 @@ export const dataRegistrosLider = [
         municipio: 'Bogotá D.C.',
     }, {
         solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '17',
         nombre: 'Camilo Sarmiento',
@@ -96,7 +91,7 @@ export const dataRegistrosLider = [
     },
     {
         solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '5',
         nombre: 'Lukas rendon',
@@ -108,7 +103,7 @@ export const dataRegistrosLider = [
     },
     {
         solicitud: 1,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
@@ -119,7 +114,7 @@ export const dataRegistrosLider = [
         municipio: 'Bogotá D.C.',
     }, {
         solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '18',
         nombre: 'Lukas rendon',
@@ -130,7 +125,7 @@ export const dataRegistrosLider = [
         municipio: 'Bogotá D.C.',
     }, {
         solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '35',
         nombre: 'Camilo Sarmiento',

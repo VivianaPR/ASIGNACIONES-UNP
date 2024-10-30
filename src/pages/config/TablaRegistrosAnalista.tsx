@@ -1,7 +1,7 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
-export const columnsLeader = [
+export const columnsRegistrosAnalista = [
     {
         key: 'solicitud',
         label: 'Solicitud',
@@ -26,7 +26,7 @@ export const columnsLeader = [
     },
     {
         key: 'nuip',
-        label: 'Nuip',
+        label: 'Número de Identificación',
         hasModal: true
     },
     {
@@ -45,22 +45,10 @@ export const columnsLeader = [
         key: 'municipio',
         label: 'Municipio',
     },
-    {
-        key: 'zona',
-        label: 'Zona',
-        
-    },
-    {
-        key: 'anexos',
-        label: 'Anexos',
-        
-        
-        hasModal: true
-        
-    },
+    
 ]
 
-export const dataLeader = [
+export const dataRegistrosAnalista = [
     {
         solicitud: 3,
         registro: '00001',
@@ -72,8 +60,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     },
     {
         solicitud: 1,
@@ -86,8 +73,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     }, {
         solicitud: 4,
         registro: '00001',
@@ -99,8 +85,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     }, {
         solicitud: 2,
         registro: '00001',
@@ -112,8 +97,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     },
     {
         solicitud: 4,
@@ -126,8 +110,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     },
     {
         solicitud: 1,
@@ -140,8 +123,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     }, {
         solicitud: 3,
         registro: '00001',
@@ -153,8 +135,7 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     }, {
         solicitud: 2,
         registro: '00001',
@@ -166,7 +147,6 @@ export const dataLeader = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
-        anexos: <button className="btn custom-button">Ver</button>
+        
     },
 ]

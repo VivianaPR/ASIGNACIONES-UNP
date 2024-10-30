@@ -1,14 +1,20 @@
 import { Tabs } from "react-bootstrap";
 import { TabVentana, CustomeTable } from "eco-unp/ui";
-import { columnsLeader, dataLeader } from "./config/TablaRegistrosLider";
-import { ModalRegistro } from "../modals/ModalRegistro";
+import { columnsRegistrosLider, dataRegistrosLider } from "./config/TablaRegistrosLider";
+import { columnsAsignacionesLider, dataAsignacionesLider } from "./config/TablaAsignacionesLider";
+import { ModalRegistroLider } from "../modals/ModalRegistroLider";
+import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
-export function BandejaCasosLider (){
+
+
+export function BandejaCasosLider() {
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
-            case "registro":
-                return (<ModalRegistro></ModalRegistro>);
+            case "registro_tablaRegistrosLider":
+                return (<ModalRegistroLider />);
+            case "registro_tablaAsignacionARiesgo":
+                return (<ModalAsignacionARiesgo />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }
@@ -18,20 +24,28 @@ export function BandejaCasosLider (){
         <Tabs defaultActiveKey={"tab1"}>
             <TabVentana eventKey={"tab1"} title={"Lista de Registros"}>
                 <div className="tables-container">
-                <CustomeTable 
-                columns={columnsLeader} 
-                data={dataLeader}
-                renderModalContent={renderModalContent}
-                totalDias={30}
-                ></CustomeTable>
-                </div> 
-            </TabVentana> 
+                    <CustomeTable
+                        columns={columnsRegistrosLider}
+                        data={dataRegistrosLider}
+                        renderModalContent={renderModalContent}
+                        totalDias={30}
+                    ></CustomeTable>
+                </div>
+            </TabVentana>
+
             <TabVentana eventKey={"tab2"} title={"Asignaciones"}>
-                <p>Chao</p>
+                <div className="tables-container">
+                    <CustomeTable
+                        columns={columnsAsignacionesLider}
+                        data={dataAsignacionesLider}
+                        renderModalContent={renderModalContent}
+                        totalDias={30}
+                    ></CustomeTable>
+                </div>
             </TabVentana>
         </Tabs>
     )
-    
-    
-} 
+
+
+}
 

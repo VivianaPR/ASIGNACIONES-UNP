@@ -1,7 +1,7 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
-export const columnsLeader = [
+export const columnsRegistrosAnalista = [
     {
         key: 'solicitud',
         label: 'Solicitud',
@@ -26,12 +26,11 @@ export const columnsLeader = [
     },
     {
         key: 'nuip',
-        label: 'Nuip',
-        hasModal: true
+        label: 'Número de Identificación',
     },
     {
-        key: 'genero',
-        label: 'Celular o teléfono',
+        key: 'celular',
+        label: 'Teléfono o Celular',
     },
     {
         key: 'correo',
@@ -45,15 +44,10 @@ export const columnsLeader = [
         key: 'municipio',
         label: 'Municipio',
     },
-    {
-        key: 'zona',
-        label: 'Zona',
-        
-    },
     
 ]
 
-export const dataLeader = [
+export const dataRegistrosAnalista = [
     {
         solicitud: 3,
         registro: '00001',
@@ -61,11 +55,10 @@ export const dataLeader = [
         dias_habiles: '9',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     },
     {
@@ -75,11 +68,10 @@ export const dataLeader = [
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     }, {
         solicitud: 4,
@@ -88,11 +80,10 @@ export const dataLeader = [
         dias_habiles: '25',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     }, {
         solicitud: 2,
@@ -101,11 +92,10 @@ export const dataLeader = [
         dias_habiles: '17',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     },
     {
@@ -115,25 +105,23 @@ export const dataLeader = [
         dias_habiles: '5',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     },
     {
-        solicitud: 1,
+        solicitud: 5,
         registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     }, {
         solicitud: 3,
@@ -142,11 +130,10 @@ export const dataLeader = [
         dias_habiles: '18',
         nombre: 'Lukas rendon',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     }, {
         solicitud: 2,
@@ -155,11 +142,10 @@ export const dataLeader = [
         dias_habiles: '35',
         nombre: 'Camilo Sarmiento',
         nuip: '1.021.963.741',
-        genero: 'Masculino',
+        celular: '350 220 4049',
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
-        zona: 'Urbana',
         
     },
 ]

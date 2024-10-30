@@ -7,15 +7,15 @@ import { BandejaCasosAnalista } from './pages/BandejaCasosAnalista';
 
 function App() {
   return (
-    <VentanaLienzo>
+
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BandejaCasosLider />} />
+          <Route path="*" element={<Navigate to = "/bandeja-casos-lider"/>} />
           <Route path="/bandeja-casos-lider" element={<BandejaCasosLider />} />
           <Route path="/bandeja-casos-analista" element={<BandejaCasosAnalista />} />
         </Routes>
       </BrowserRouter>
-    </VentanaLienzo>
+
   )
 }
 

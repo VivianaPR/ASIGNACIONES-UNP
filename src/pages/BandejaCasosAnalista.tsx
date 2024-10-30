@@ -1,9 +1,9 @@
 import { Tabs } from "react-bootstrap";
-import { TabVentana, CustomeTable } from "eco-unp/ui";
-import { columnsLeader, dataLeader } from "./config/TablaRegistrosAnalista";
+import { TabVentana, CustomeTable, VentanaLienzo } from "eco-unp/ui";
+import { columnsRegistrosAnalista, dataRegistrosAnalista } from "./config/TablaRegistrosAnalista";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
-export function BandejaCasosAnalista (){
 
+export function BandejaCasosAnalista() {
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
@@ -15,23 +15,18 @@ export function BandejaCasosAnalista (){
     };
 
     return (
-        <Tabs defaultActiveKey={"tab1"}>
-            <TabVentana eventKey={"tab1"} title={"Registros"}>
-                <div className="tables-container">
-                <CustomeTable 
-                columns={columnsLeader} 
-                data={dataLeader}
+        <VentanaLienzo>
+        <div className="tables-container">
+            <CustomeTable
+                columns={columnsRegistrosAnalista}
+                data={dataRegistrosAnalista}
                 renderModalContent={renderModalContent}
                 totalDias={20}
-                ></CustomeTable>
-                </div> 
-            </TabVentana> 
-            <TabVentana eventKey={"tab2"} title={"Asignaciones"}>
-                <p>Chao</p>
-            </TabVentana>
-        </Tabs>
+            ></CustomeTable>
+        </div>
+        </VentanaLienzo>
     )
-    
-    
-} 
+
+
+}
 

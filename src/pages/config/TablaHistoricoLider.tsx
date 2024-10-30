@@ -1,24 +1,19 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
-export const columnsRegistrosLider = [
+export const columnsHistoricoLider = [
     {
         key: 'solicitud',
         label: 'Solicitud',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro_tablaRegistrosLider',
+        key: 'registro',
         label: 'Registro',
-        hasModal: true
     },
     {
         key: 'radicado',
         label: 'Radicado',
-    },
-    {
-        key: 'dias_habiles',
-        label: 'Días hábiles',
     },
     {
         key: 'nombre',
@@ -44,13 +39,21 @@ export const columnsRegistrosLider = [
         key: 'municipio',
         label: 'Municipio',
     },
+    {
+        key: 'asignaciones',
+        label: 'Analista de Asignaciones',
+    },
+    {
+        key: 'riesgo',
+        label: 'Analista de Riesgo',
+    },
     
 ]
 
-export const dataRegistrosLider = [
+export const dataHistoricoLider = [
     {
         solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '9',
         nombre: 'Lukas rendon',
@@ -59,10 +62,12 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     },
     {
         solicitud: 1,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
@@ -71,9 +76,11 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '25',
         nombre: 'Lukas rendon',
@@ -82,9 +89,11 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     }, {
         solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '17',
         nombre: 'Camilo Sarmiento',
@@ -93,10 +102,12 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     },
     {
         solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '5',
         nombre: 'Lukas rendon',
@@ -105,10 +116,12 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Vicente Fernandez',
     },
     {
         solicitud: 5,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',
         nombre: 'Camilo Sarmiento',
@@ -117,9 +130,11 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '18',
         nombre: 'Lukas rendon',
@@ -128,9 +143,11 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Viviana Perez Ruiz',
+        riesgo: 'Andres Manuel Lopez Obrador',
     }, {
         solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
+        registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '35',
         nombre: 'Camilo Sarmiento',
@@ -139,5 +156,7 @@ export const dataRegistrosLider = [
         correo: 'lucas.rendon@unp.gov.co',
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
+        asignaciones: 'Andres Cepeda',
+        riesgo: 'Andres Manuel Lopez Obrador',
     },
 ]

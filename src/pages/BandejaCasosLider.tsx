@@ -1,14 +1,14 @@
 import { Tabs } from "react-bootstrap";
 import { TabVentana, CustomeTable } from "eco-unp/ui";
 import { columnsLeader, dataLeader } from "./config/TablaRegistrosLider";
-import { ModalRegistro } from "../modals/ModalRegistro";
+import { ModalRegistroLider } from "../modals/ModalRegistroLider";
 
 export function BandejaCasosLider (){
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
             case "registro":
-                return (<ModalRegistro></ModalRegistro>);
+                return (<ModalRegistroLider />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }

@@ -27,7 +27,6 @@ export const columnsLeader = [
     {
         key: 'nuip',
         label: 'Nuip',
-        hasModal: true
     },
     {
         key: 'genero',
@@ -66,7 +65,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     },
     {
         solicitud: 1,
@@ -80,7 +78,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     }, {
         solicitud: 4,
         registro: '00001',
@@ -93,7 +90,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     }, {
         solicitud: 2,
         registro: '00001',
@@ -106,7 +102,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     },
     {
         solicitud: 4,
@@ -120,7 +115,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     },
     {
         solicitud: 1,
@@ -134,7 +128,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     }, {
         solicitud: 3,
         registro: '00001',
@@ -147,7 +140,6 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     }, {
         solicitud: 2,
         registro: '00001',
@@ -160,6 +152,5 @@ export const dataLeader = [
         departamento: 'Bogotá D.C.',
         municipio: 'Bogotá D.C.',
         zona: 'Urbana',
-        
     },
 ]

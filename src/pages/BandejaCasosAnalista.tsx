@@ -1,5 +1,5 @@
 import { Tabs } from "react-bootstrap";
-import { TabVentana, CustomeTable, VentanaLienzo } from "eco-unp/ui";
+import { TabVentana, BootstrapTable, VentanaLienzo } from "eco-unp/ui";
 import { columnsRegistrosAnalista, dataRegistrosAnalista } from "./config/TablaRegistrosAnalista";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 
@@ -17,12 +17,11 @@ export function BandejaCasosAnalista() {
     return (
         <VentanaLienzo>
         <div className="tables-container">
-            <CustomeTable
-                columns={columnsRegistrosAnalista}
-                data={dataRegistrosAnalista}
-                renderModalContent={renderModalContent}
-                totalDias={20}
-            ></CustomeTable>
+            <BootstrapTable
+                    columns={columnsRegistrosAnalista}
+                    data={dataRegistrosAnalista}
+                    renderModalContent={renderModalContent}
+                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}            ></BootstrapTable>
         </div>
         </VentanaLienzo>
     )

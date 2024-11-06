@@ -1,4 +1,4 @@
-import IconTooltip from '../../shared/components/TipoSolicitud';
+import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
 export const columnsRegistrosLider = [

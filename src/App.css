@@ -14,3 +14,28 @@
 tbody, td, tfoot, th, thead, tr{
   align-content: center;
 }
+
+.tittle-container-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.boton-desplegable{
+  background-color: transparent !important;
+  font-size: 25px !important;
+  color: #303D50;
+}
+
+.item_container{
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  padding: 0 1rem;
+  margin: 1rem 0;
+  box-shadow: 3px 4px 5px gainsboro;
+}
+
+.boton-desplegable:hover{
+  color: #697586;
+  transition: all 0.3s ease-in-out;
+}

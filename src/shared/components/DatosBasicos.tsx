@@ -8,7 +8,7 @@ const DatosBasicos: React.FC = () => {
     // Simulando datos obtenidos desde la base de datos
     const [formData] = useState({
         fechaLlegada: "2024-10-29",
-        nombreCompleto: "Carlos Pérez",
+        nombreCompleto: "Carlos Stiven Hernandez Tarazona",
         tipoDocumento: "Cédula",
         numeroIdentificacion: "123456789",
         sexo: "Masculino",

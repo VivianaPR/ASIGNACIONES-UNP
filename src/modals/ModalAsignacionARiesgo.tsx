@@ -12,13 +12,14 @@ export function ModalAsignacionARiesgo(row: any) {
     return (
         <>
             <SubtituloForm subtitulo={"Analista de Riesgo "} icon={FaUser} />
-            <FormGroup>
+            <FormGroup style={{ display: "flex", gap: "1rem"}}>
                 <FormSelect>
                     <option value="">Seleccione...</option>
                     <option value="1">Diego Alejandro Castañeda Herrera</option>
                     <option value="2">Julian Buitrago </option>
                     <option value="3">Carlos Pinzon</option>
                 </FormSelect>
+                <button className="btn btn-primary">Asignar</button>
             </FormGroup>
 
             <FormGroup>
@@ -46,19 +47,6 @@ export function ModalAsignacionARiesgo(row: any) {
                 </p>
             </Card>
 
-            <button
-                className="btn btn-primary"
-                style={{
-                    display: "relative",
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    marginBottom: "5px",
-                    marginRight: "45px",
-                }}
-            >
-                Enviar
-            </button>
         </>
     );
 }

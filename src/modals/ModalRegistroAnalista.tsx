@@ -35,8 +35,12 @@ export function ModalRegistroAnalista(row: any) {
             Seleccione...
           </option>
           <option value="1">Devolver a Servicio al Ciudadano</option>
-          <option value="2">Confirmar y enviar a asignación de analista de riesgo</option>
-          <option value="3">Remitir a Subdirección Especializada de Protección</option>
+          <option value="2">
+            Confirmar y enviar a asignación de analista de riesgo
+          </option>
+          <option value="3">
+            Remitir a Subdirección Especializada de Protección
+          </option>
         </FormSelect>
       </FormGroup>
 
@@ -50,20 +54,10 @@ export function ModalRegistroAnalista(row: any) {
           placeholder="Escribe aquí una observación sobre el caso..."
         />
       </FormGroup>
+      <div style={{display: "flex",  justifyContent: "right", marginTop: "1rem"}}>
 
-      <button
-        className="btn btn-primary"
-        style={{
-          display: "relative",
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          marginBottom: "5px",
-          marginRight: "45px",
-        }}
-      >
-        Enviar
-      </button>
+        <button className="btn btn-primary">Enviar</button>
+      </div>
     </>
   );
 }

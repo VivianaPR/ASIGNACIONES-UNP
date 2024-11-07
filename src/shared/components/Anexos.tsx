@@ -14,7 +14,6 @@ const AnexosSolicitante: React.FC = () => {
         <Col xs={12} md={6} lg={3}>
           <Card className="px-2 py-2" style={ {cursor: 'pointer'} }>Cedula de Ciudadanía </Card>
         </Col>
-
         <Col xs={12} md={6} lg={3}>
           <Card className="px-2 py-2" style={ {cursor: 'pointer'} }>Formulario de solicitud</Card>
         </Col>

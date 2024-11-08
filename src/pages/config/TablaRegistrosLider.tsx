@@ -1,143 +1,82 @@
-import IconTooltip from '../../shared/components/TipoSolicitud';
+import IconTooltip from "../../shared/components/TipoSolicitud";
 import { FaEye } from "react-icons/fa";
+
+
+
 
 export const columnsRegistrosLider = [
     {
-        key: 'solicitud',
-        label: 'Solicitud',
+        key: 'idTipoSolicitud',
+        label: 'Tipo estudio',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro_tablaRegistrosLider',
+        key: 'numeroRegistro',
         label: 'Registro',
         hasModal: true
     },
     {
-        key: 'radicado',
-        label: 'Radicado',
+        key: 'canalSolicitud',
+        label: 'Canal',
     },
     {
-        key: 'dias_habiles',
+        key: 'diasHabiles',
         label: 'Días hábiles',
     },
     {
-        key: 'nombre',
+        key: 'radicado',
+        label: 'Radicado',
+        hasModal: true
+    },
+    {
+        key: 'nombrePersona',
         label: 'Nombre completo',
     },
     {
-        key: 'nuip',
-        label: 'Numero de Identificación',
+        key: 'identificacionPersona',
+        label: 'NUIP',
     },
     {
-        key: 'celular',
-        label: 'Teléfono o Celular',
-    },
-    {
-        key: 'correo',
-        label: 'Correo electrónico',
-    },
-    {
-        key: 'departamento',
-        label: 'Departamento',
-    },
-    {
-        key: 'municipio',
-        label: 'Municipio',
-    },
-    
+        key: 'ubicacionPersona',
+        label: 'Ubicación',
+    },    
 ]
 
-export const dataRegistrosLider = [
+
+export const columnsAsignacionLider = [
     {
-        solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '9',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
+        key: 'idTipoSolicitud',
+        label: 'Tipo estudio',
+        renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        solicitud: 1,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '3',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-    }, {
-        solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '25',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-    }, {
-        solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '17',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
+        key: 'numeroRegistro',
+        label: 'Registro',
+        hasModal: true
     },
     {
-        solicitud: 4,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '5',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
+        key: 'canalSolicitud',
+        label: 'Canal',
     },
     {
-        solicitud: 5,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '3',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-    }, {
-        solicitud: 3,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '18',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-    }, {
-        solicitud: 2,
-        registro_tablaRegistrosLider: '00001',
-        radicado: 'EXT 2024 000078',
-        dias_habiles: '35',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
+        key: 'diasHabiles',
+        label: 'Días hábiles',
     },
+    {
+        key: 'radicado',
+        label: 'Radicado',
+        hasModal: true
+    },
+    {
+        key: 'nombrePersona',
+        label: 'Nombre completo',
+    },
+    {
+        key: 'identificacionPersona',
+        label: 'NUIP',
+    },
+    {
+        key: 'ubicacionPersona',
+        label: 'Ubicación',
+    },    
 ]

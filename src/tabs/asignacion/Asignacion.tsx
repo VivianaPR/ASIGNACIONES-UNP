@@ -1,9 +1,8 @@
 import React from "react";
-import { TabVentana, BootstrapTable, VentanaLienzo } from "eco-unp/ui";
-import { columnsRegistrosAnalista, dataRegistrosAnalista } from "./config/TablaRegistrosAnalista";
-import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
-import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
-import { ModalRadicado } from "../modals/ModalRadicado";
+import { BootstrapTable } from "eco-unp/ui";
+import { columnsAsignacionLider } from "../../pages/config/TablaRegistrosLider";
+import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";
+import { ModalRadicado } from "../../modals/ModalRadicado";
 
 interface Registro {
     tipoRuta: string;
@@ -68,7 +67,6 @@ interface Solicitud {
 
 // 
 const transformarDatos = (data: ApiResponse): Solicitud => {
-
     return {
         solicitud: data.registro.idTipoSolicitud,
         canalSolicitud: data.registro.canalSolicitud,
@@ -96,23 +94,24 @@ const transformarDatos = (data: ApiResponse): Solicitud => {
     };
 };
 
-export function BandejaCasosAnalista() {
+export const AsignacionAsignacion: React.FC = () => {
 
-    const [data, setData] = React.useState<Solicitud[]>([]);
+    const [dataRegistro, setDataRegistro] = React.useState<Solicitud[]>([]);
+    const [dataAsignacion, setDataAsignacion] = React.useState<Solicitud[]>([]);
     const [update, setUpdate] = React.useState(false);
     const url = 'http://127.0.0.1:8000/registro/liderasignacion/'
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
             case "numeroRegistro":
-                return (<ModalRegistroAnalista row={row} update={setUpdate}  />);
-                case "radicado":
-                    return (<ModalRadicado />);
-                case "registro_tablaAsignacionARiesgo":
-                    return (<ModalAsignacionARiesgo />);
-                default:
-                    return <p>No hay información adicional disponible.</p>;
-            }
+                return (<ModalAsignacionARiesgo row={row} update={setUpdate} />);
+            case "radicado":
+                return (<ModalRadicado/>);
+            case "registro_tablaAsignacionARiesgo":
+                return (<ModalAsignacionARiesgo />);
+            default:
+                return <p>No hay información adicional disponible.</p>;
+        }
     };
 
     React.useEffect(() => {
@@ -120,10 +119,10 @@ export function BandejaCasosAnalista() {
             try {
                 const response = await fetch(url);
                 const result = await response.json();
-                const filteredData = result
+                const filteredDataAsignacion = result
                     .map((item: ApiResponse) => transformarDatos(item))
-                    .filter((item: Solicitud) => item.estadoRegistro === 16);
-                setData(filteredData);
+                    .filter((item: Solicitud) => item.estadoRegistro === 19);
+                setDataAsignacion(filteredDataAsignacion);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -133,7 +132,7 @@ export function BandejaCasosAnalista() {
         setUpdate(false);
         console.log('se actualiza')
 
-        const intervalTime = 60000; // 1 minuto en ms
+        const intervalTime =5000; // 1 minuto en ms
 
         const interval = setInterval(async () => {
             await fetchData();
@@ -144,17 +143,11 @@ export function BandejaCasosAnalista() {
     }, [url, update]);
 
     return (
-        <VentanaLienzo>
-        <div className="tables-container">
-            <BootstrapTable
-                    columns={columnsRegistrosAnalista}
-                    data={data}
-                    renderModalContent={renderModalContent}
-                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}            ></BootstrapTable>
-        </div>
-        </VentanaLienzo>
-    )
-
-
-}
-
+        <BootstrapTable
+            columns={columnsAsignacionLider}
+            data={dataAsignacion}
+            renderModalContent={renderModalContent}
+            totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}
+        />
+    );
+};

@@ -1,28 +1,28 @@
-import IconTooltip from '../../shared/components/TipoSolicitud';
+import IconTooltip from "../../shared/components/TipoSolicitud";
 import { FaEye } from "react-icons/fa";
 
 export const columnsAsignacionesLider = [
     {
-        key: 'solicitud',
-        label: 'Solicitud',
+        key: 'idTipoSolicitud',
+        label: 'Tipo de estudio',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro_tablaAsignacionARiesgo',
+        key: 'registro',
         label: 'Registro',
         hasModal: true
+    },
+    {
+        key: 'tipo_estudio',
+        label: 'Canal',
     },
     {
         key: 'radicado',
         label: 'Radicado',
     },
     {
-        key: 'dias_habiles',
+        key: 'diasHabiles',
         label: 'Días hábiles',
-    },
-    {
-        key: 'tipo_estudio',
-        label: 'Tipo de Estudio',
     },
     {
         key: 'nombre',

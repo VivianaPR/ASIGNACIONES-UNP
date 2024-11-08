@@ -3,48 +3,40 @@ import { FaEye } from "react-icons/fa";
 
 export const columnsRegistrosAnalista = [
     {
-        key: 'solicitud',
-        label: 'Solicitud',
+        key: 'idTipoSolicitud',
+        label: 'Tipo estudio',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro',
+        key: 'numeroRegistro',
         label: 'Registro',
         hasModal: true
     },
     {
-        key: 'radicado',
-        label: 'Radicado',
+        key: 'canalSolicitud',
+        label: 'Canal',
     },
     {
-        key: 'dias_habiles',
+        key: 'diasHabiles',
         label: 'Días hábiles',
     },
     {
-        key: 'nombre',
+        key: 'radicado',
+        label: 'Radicado',
+        hasModal: true
+    },
+    {
+        key: 'nombrePersona',
         label: 'Nombre completo',
     },
     {
-        key: 'nuip',
-        label: 'Número de Identificación',
+        key: 'identificacionPersona',
+        label: 'NUIP',
     },
     {
-        key: 'celular',
-        label: 'Teléfono o Celular',
-    },
-    {
-        key: 'correo',
-        label: 'Correo electrónico',
-    },
-    {
-        key: 'departamento',
-        label: 'Departamento',
-    },
-    {
-        key: 'municipio',
-        label: 'Municipio',
-    },
-    
+        key: 'ubicacionPersona',
+        label: 'Ubicación',
+    },    
 ]
 
 export const dataRegistrosAnalista = [

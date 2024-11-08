@@ -16,7 +16,7 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
     let Icon = null;
 
     switch (solicitud) {
-        case 1:
+        case 4:
             tooltipText = "Caso de Emergencia";
             variant = "danger";
             Icon = FaExclamationTriangle;
@@ -31,7 +31,7 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
             variant = "primary";
             Icon = FaSync;
             break;
-        case 4:
+        case 1:
             tooltipText = "Primera Vez";
             variant = "success";
             Icon = TbHexagonNumber1Filled;

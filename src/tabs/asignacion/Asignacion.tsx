@@ -2,7 +2,7 @@ import React from "react";
 import { BootstrapTable } from "eco-unp/ui";
 import { columnsAsignacionLider } from "../../pages/config/TablaRegistrosLider";
 import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";
-import { ModalRadicado } from "../../modals/ModalRadicado";
+import { columnsAsignacionesLider, dataAsignacionesLider } from "../../pages/config/TablaAsignacionesLider";
 
 interface Registro {
     tipoRuta: string;
@@ -105,8 +105,6 @@ export const AsignacionAsignacion: React.FC = () => {
         switch (column.key) {
             case "numeroRegistro":
                 return (<ModalAsignacionARiesgo row={row} update={setUpdate} />);
-            case "radicado":
-                return (<ModalRadicado/>);
             case "registro_tablaAsignacionARiesgo":
                 return (<ModalAsignacionARiesgo />);
             default:
@@ -144,8 +142,8 @@ export const AsignacionAsignacion: React.FC = () => {
 
     return (
         <BootstrapTable
-            columns={columnsAsignacionLider}
-            data={dataAsignacion}
+            columns={columnsAsignacionesLider}
+            data={dataAsignacionesLider}
             renderModalContent={renderModalContent}
             totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}
         />

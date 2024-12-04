@@ -1,28 +1,28 @@
-import IconTooltip from "../../shared/components/TipoSolicitud";
+import IconTooltip from "../../shared/components/tipoSolicitud";
 import { FaEye } from "react-icons/fa";
 
 export const columnsAsignacionesLider = [
     {
-        key: 'idTipoSolicitud',
-        label: 'Tipo de estudio',
+        key: 'solicitud',
+        label: 'Solicitud',
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro',
+        key: 'registro_tablaAsignacionARiesgo',
         label: 'Registro',
         hasModal: true
-    },
-    {
-        key: 'tipo_estudio',
-        label: 'Canal',
     },
     {
         key: 'radicado',
         label: 'Radicado',
     },
     {
-        key: 'diasHabiles',
+        key: 'dias_habiles',
         label: 'Días hábiles',
+    },
+    {
+        key: 'tipo_estudio',
+        label: 'Tipo de Estudio',
     },
     {
         key: 'nombre',
@@ -116,7 +116,7 @@ export const dataAsignacionesLider = [
         municipio: 'Bogotá D.C.',
     },
     {
-        solicitud: 5,
+        solicitud: 4,
         registro_tablaAsignacionARiesgo: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',

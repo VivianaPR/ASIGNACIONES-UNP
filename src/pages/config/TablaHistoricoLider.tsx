@@ -1,4 +1,4 @@
-import IconTooltip from '../../shared/components/TipoSolicitud';
+import IconTooltip from '../../shared/components/tipoSolicitud';
 import { FaEye } from "react-icons/fa";
 
 export const columnsHistoricoLider = [
@@ -120,7 +120,7 @@ export const dataHistoricoLider = [
         riesgo: 'Vicente Fernandez',
     },
     {
-        solicitud: 5,
+        solicitud: 4,
         registro: '00001',
         radicado: 'EXT 2024 000078',
         dias_habiles: '3',

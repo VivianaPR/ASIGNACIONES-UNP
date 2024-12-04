@@ -10,7 +10,7 @@ import { Card } from "react-bootstrap";
 
 interface Props {
   row?: any;
-  update: any;
+  update?: any;
 }
 
 export const ModalRegistroLider: React.FC<Props> = ({ row, update }) => {

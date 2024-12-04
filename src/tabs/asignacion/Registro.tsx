@@ -2,7 +2,6 @@ import React from "react";
 import { BootstrapTable } from "eco-unp/ui";
 import { columnsRegistrosLider } from "../../pages/config/TablaRegistrosLider";
 import { ModalRegistroLider } from "../../modals/ModalRegistroLider";
-import { ModalRadicado } from "../../modals/ModalRadicado";
 import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";
 
 interface Registro {
@@ -106,8 +105,6 @@ export const RegistroAsignacion: React.FC = () => {
         switch (column.key) {
             case "numeroRegistro":
                 return (<ModalRegistroLider row={row} update={setUpdate} />);
-            case "radicado":
-                return (<ModalRadicado />);
             case "registro_tablaAsignacionARiesgo":
                 return (<ModalAsignacionARiesgo />);
             default:

@@ -3,18 +3,31 @@ import { TabVentana, BootstrapTable, VentanaUsuario } from "eco-unp/ui";
 import { columnsHistoricoLider, dataHistoricoLider } from "./config/TablaHistoricoLider";
 import { RegistroAsignacion } from "../tabs/asignacion/Registro";
 import { AsignacionAsignacion } from "../tabs/asignacion/Asignacion";
-
+import { Tabs } from "react-bootstrap";
+import { columnsRegistrosLider, dataRegistrosLider } from "./config/TablaRegistrosLider";
+import { columnsAsignacionesLider, dataAsignacionesLider } from "./config/TablaAsignacionesLider";
+import { ModalRegistroLider } from "../modals/ModalRegistroLider";
+import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
 
 export function BandejaCasosLider() {
 
-    
+    const renderModalContent = (row: Record<string, any>, column: any) => {
+        switch (column.key) {
+            case "registro_tablaRegistrosLider":
+                return (<ModalRegistroLider row={row}/>);
+            case "registro_tablaAsignacionARiesgo":
+                return (<ModalAsignacionARiesgo />);
+            default:
+                return <p>No hay información adicional disponible.</p>;
+        }
+    };
 
     return (
         <VentanaUsuario>
-            <TabVentana eventKey={"tab1"} title={"Registros"}>
+            {/* <TabVentana eventKey={"tab1"} title={"Registros"}>
                 <RegistroAsignacion />
-            </TabVentana>
+            </TabVentana> */}
 
             <TabVentana eventKey={"tab2"} title={"Asignaciones"}>
                 <AsignacionAsignacion />
@@ -25,7 +38,7 @@ export function BandejaCasosLider() {
                     <BootstrapTable
                         columns={columnsHistoricoLider}
                         data={dataHistoricoLider}
-                        // renderModalContent={renderModalContent}
+                        renderModalContent={renderModalContent}
                         totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}                    ></BootstrapTable>
                 </div>
             </TabVentana>

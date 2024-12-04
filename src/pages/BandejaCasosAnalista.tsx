@@ -3,7 +3,6 @@ import { TabVentana, BootstrapTable, VentanaLienzo } from "eco-unp/ui";
 import { columnsRegistrosAnalista, dataRegistrosAnalista } from "./config/TablaRegistrosAnalista";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
-import { ModalRadicado } from "../modals/ModalRadicado";
 
 interface Registro {
     tipoRuta: string;
@@ -104,15 +103,13 @@ export function BandejaCasosAnalista() {
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
-            case "numeroRegistro":
-                return (<ModalRegistroAnalista row={row} update={setUpdate}  />);
-                case "radicado":
-                    return (<ModalRadicado />);
-                case "registro_tablaAsignacionARiesgo":
-                    return (<ModalAsignacionARiesgo />);
-                default:
-                    return <p>No hay información adicional disponible.</p>;
-            }
+            case "registro":
+                return (<ModalRegistroAnalista row={row} update={setUpdate} />);
+            case "registro_tablaAsignacionARiesgo":
+                return (<ModalAsignacionARiesgo />);
+            default:
+                return <p>No hay información adicional disponible.</p>;
+        }
     };
 
     React.useEffect(() => {
@@ -145,13 +142,13 @@ export function BandejaCasosAnalista() {
 
     return (
         <VentanaLienzo>
-        <div className="tables-container">
-            <BootstrapTable
+            <div className="tables-container">
+                <BootstrapTable
                     columns={columnsRegistrosAnalista}
-                    data={data}
+                    data={dataRegistrosAnalista}
                     renderModalContent={renderModalContent}
-                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}            ></BootstrapTable>
-        </div>
+                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}></BootstrapTable>
+            </div>
         </VentanaLienzo>
     )
 

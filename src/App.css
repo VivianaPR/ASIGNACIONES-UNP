@@ -47,6 +47,13 @@ tbody, td, tfoot, th, thead, tr{
   margin-bottom: 2rem;
 }
 
+@media (max-width: 1700px) {
+  .files_container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
 .anexo_item{
   display: flex;
   flex-direction: column;
@@ -67,4 +74,10 @@ tbody, td, tfoot, th, thead, tr{
   background-color: #303D50;
   color: white;
   transition: all 0.3s ease-in-out
+}
+
+.anexosContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
 }

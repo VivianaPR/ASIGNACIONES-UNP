@@ -3,8 +3,6 @@ import { VentanaLienzo } from 'eco-unp/ui';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { BandejaCasosLider } from './pages/BandejaCasosLider';
 import { BandejaCasosAnalista } from './pages/BandejaCasosAnalista';
-
-
 import DatosBasicos from './shared/components/DatosBasicos';
 import { InicioSesion, PaginaNoEncontrada, PaginaNoPermitida } from "eco-unp/ui"
 import { ProtectedRoote as RutasProtegidas } from "eco-unp/utils"

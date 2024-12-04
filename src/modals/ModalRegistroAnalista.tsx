@@ -65,9 +65,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
       <FormGroup>
         <SubtituloForm subtitulo={"Gestión"} icon={FaUser} />
         <FormSelect>
-          <option value="0" disabled>
-            Seleccione...
-          </option>
+          <option value="">Seleccione...</option>
           <option value="1">Devolver a Servicio al Ciudadano</option>
           <option value="2">
             Confirmar y enviar a asignación de analista de riesgo

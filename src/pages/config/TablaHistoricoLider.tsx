@@ -47,6 +47,10 @@ export const columnsHistoricoLider = [
         key: 'riesgo',
         label: 'Analista de Riesgo',
     },
+    {
+        key: 'ot',
+        label: 'Orden de Trabajo',
+    },
     
 ]
 
@@ -64,6 +68,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Andres Cepeda',
         riesgo: 'Andres Manuel Lopez Obrador',
+        ot: 'OTI0001'
     },
     {
         solicitud: 1,
@@ -78,6 +83,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Andres Cepeda',
         riesgo: 'Andres Manuel Lopez Obrador',
+        ot: 'OTI0002'
     }, {
         solicitud: 4,
         registro: '00001',
@@ -91,6 +97,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Viviana Perez Ruiz',
         riesgo: 'Vicente Fernandez',
+        ot: 'OTI0003'
     }, {
         solicitud: 2,
         registro: '00001',
@@ -104,6 +111,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Viviana Perez Ruiz',
         riesgo: 'Vicente Fernandez',
+        ot: 'OTI0004'
     },
     {
         solicitud: 4,
@@ -118,6 +126,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Viviana Perez Ruiz',
         riesgo: 'Vicente Fernandez',
+        ot: 'OTI0005'
     },
     {
         solicitud: 4,
@@ -132,6 +141,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Viviana Perez Ruiz',
         riesgo: 'Andres Manuel Lopez Obrador',
+        ot: 'OTI0006'
     }, {
         solicitud: 3,
         registro: '00001',
@@ -145,6 +155,7 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Viviana Perez Ruiz',
         riesgo: 'Andres Manuel Lopez Obrador',
+        ot: 'OTI0007'
     }, {
         solicitud: 2,
         registro: '00001',
@@ -158,5 +169,6 @@ export const dataHistoricoLider = [
         municipio: 'Bogotá D.C.',
         asignaciones: 'Andres Cepeda',
         riesgo: 'Andres Manuel Lopez Obrador',
+        ot: 'OTI0008'
     },
 ]

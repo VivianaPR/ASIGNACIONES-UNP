@@ -145,7 +145,7 @@ export const AsignacionAsignacion: React.FC = () => {
             columns={columnsAsignacionesLider}
             data={dataAsignacionesLider}
             renderModalContent={renderModalContent}
-            totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}
+            totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}
         />
     );
 };

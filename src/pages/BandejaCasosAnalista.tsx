@@ -147,7 +147,7 @@ export function BandejaCasosAnalista() {
                     columns={columnsRegistrosAnalista}
                     data={dataRegistrosAnalista}
                     renderModalContent={renderModalContent}
-                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}></BootstrapTable>
+                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}></BootstrapTable>
             </div>
         </VentanaLienzo>
     )

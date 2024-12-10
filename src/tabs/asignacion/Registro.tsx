@@ -149,7 +149,7 @@ export const RegistroAsignacion: React.FC = () => {
             columns={columnsRegistrosLider}
             data={dataRegistro}
             renderModalContent={renderModalContent}
-            totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CETARR"}
+            totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}
         />
     );
 };

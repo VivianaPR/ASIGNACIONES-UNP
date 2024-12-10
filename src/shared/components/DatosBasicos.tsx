@@ -119,15 +119,15 @@ const DatosBasicos: React.FC = () => {
                         <Table responsive striped className="mb-4">
                             <tbody>
                                 <tr>
-                                    <th className="text-start">Tipo de Grupo</th>
+                                    <th className="text-start">Población</th>
                                     <td className="text-start">{formData.tipoGrupo}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Subcategoría</th>
+                                    <th className="text-start">Subpoblación</th>
                                     <td className="text-start">{formData.subcategoria}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Otros Grupos</th>
+                                    <th className="text-start">Otras Poblaciones</th>
                                     <td className="text-start">{formData.otrosGrupos}</td>
                                 </tr>
                             </tbody>

@@ -34,13 +34,11 @@ export function BandejaCasosLider() {
             </TabVentana>
 
             <TabVentana eventKey={"tab3"} title={"Histórico"}>
-                <div className="tables-container">
                     <BootstrapTable
                         columns={columnsHistoricoLider}
                         data={dataHistoricoLider}
                         renderModalContent={renderModalContent}
                         totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}                    ></BootstrapTable>
-                </div>
             </TabVentana>
         </VentanaUsuario>
     )

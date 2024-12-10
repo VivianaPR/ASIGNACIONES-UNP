@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { BandejaCasosLider } from './pages/BandejaCasosLider';
 import { BandejaCasosAnalista } from './pages/BandejaCasosAnalista';
 import DatosBasicos from './shared/components/DatosBasicos';
-import { InicioSesion, PaginaNoEncontrada, PaginaNoPermitida } from "eco-unp/ui"
-import { ProtectedRoote as RutasProtegidas } from "eco-unp/utils"
+import { InicioSesion } from "eco-unp/ui"
+
 
 function App() {
   return (
@@ -14,10 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<InicioSesion />} />
 
-        <Route element={<RutasProtegidas />}>
 
-
-        </Route>
 
           <Route path="*" element={<Navigate to="/bandeja-casos-lider" />} />
           <Route path="/bandeja-casos-lider" element={<BandejaCasosLider />} />
@@ -25,8 +22,7 @@ function App() {
 
           <Route path="/datos" element={<DatosBasicos />} />
           
-        <Route path="/sistema/pagina-no-permitida" element={<PaginaNoPermitida />} />
-        <Route path="*" element={<PaginaNoEncontrada />} />
+
 
       </Routes>
     </BrowserRouter>

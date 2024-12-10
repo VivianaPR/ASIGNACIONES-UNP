@@ -81,3 +81,9 @@ tbody, td, tfoot, th, thead, tr{
   grid-template-columns: 1fr 1fr 1fr;
   
 }
+
+.infoMainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}

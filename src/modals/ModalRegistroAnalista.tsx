@@ -47,9 +47,9 @@ export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
   return (
     <>
       <DatosBasicos /> 
+      
       <AnexosSolicitante />
 
-      {/* Sección: Tipo de Estudio */}
       <SubtituloForm subtitulo={"Tipo de Estudio"} icon={FaUserShield} />
       <FormGroup className="mt-2 text-start">
         <FormSelect>

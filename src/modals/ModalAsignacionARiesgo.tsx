@@ -4,6 +4,8 @@ import { SubtituloForm } from "eco-unp/ui";
 import { Form, FormGroup, FormLabel, FormSelect, Card, Button } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
+import swal from 'sweetalert2'
+
 
 export function ModalAsignacionARiesgo(row: any) {
     const [formState, setFormState] = useState({
@@ -33,8 +35,8 @@ export function ModalAsignacionARiesgo(row: any) {
     const handleAsignar = () => {
         const newErrors = {
             asignacion: !formState.asignacion,
-            observacion: formState.asignacion !== "1" && !formState.observacion.trim(),
-            observacionDevolucion: false // No aplica para asignar
+            observacion: formState.asignacion !== "1" && (!formState.observacion.trim() || formState.observacion.trim().length < 100),
+            observacionDevolucion: false
         };
         setErrors(newErrors);
 
@@ -42,19 +44,38 @@ export function ModalAsignacionARiesgo(row: any) {
             return;
         }
 
-        const dataToSend = {
-            asignacion: formState.asignacion,
-            observacion: formState.observacion
-        };
-        console.log("Datos enviados al asignar:", dataToSend);
-        alert("Asignación Exitosa");
+        swal.fire({
+            title: '¿Está seguro de asignar el caso?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            confirmButtonColor: '#2CAE50',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#D13C47',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const dataToSend = {
+                    asignacion: formState.asignacion,
+                    observacion: formState.observacion
+                };
+                console.log("Datos enviados al asignar:", dataToSend);
+                swal.fire({
+                    title: 'Asignación Exitosa',
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#2CAE50',
+                })
+            } else {
+                console.log('Asignación cancelada');
+            }
+        });
     };
 
     const handleDevolver = () => {
         const newErrors = {
-            asignacion: false, // No aplica para devolver
-            observacion: false, // No aplica para devolver
-            observacionDevolucion: !formState.observacionDevolucion.trim()
+            asignacion: false,
+            observacion: false,
+            observacionDevolucion: formState.observacionDevolucion.trim().length < 100,
         };
         setErrors(newErrors);
 
@@ -62,12 +83,31 @@ export function ModalAsignacionARiesgo(row: any) {
             return;
         }
 
-        const dataToSend = {
-            devolucion: formState.devolucion,
-            observacionDevolucion: formState.observacionDevolucion
-        };
-        console.log("Datos enviados al devolver:", dataToSend);
-        alert("Devolución Exitosa");
+        swal.fire({
+            title: '¿Está seguro que desea devolver el caso?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            confirmButtonColor: '#2CAE50',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#D13C47',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const dataToSend = {
+                    devolucion: formState.devolucion,
+                    observacionDevolucion: formState.observacionDevolucion
+                };
+                console.log("Datos enviados al devolver:", dataToSend);
+                swal.fire({
+                    title: 'Devolución Exitosa',
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#2CAE50',
+                })
+            } else {
+                console.log('Devolución cancelada');
+            }
+        });
     };
 
     return (
@@ -100,28 +140,33 @@ export function ModalAsignacionARiesgo(row: any) {
                 </p>
             </Card>
 
-            <FormGroup>
-                <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
-                <Form.Control
-                    as="textarea"
-                    rows={3}
-                    name="observacion"
-                    value={formState.observacion}
-                    onChange={(e) => handleInputChange(e)}
-                    placeholder="Justifique la asignación..."
-                    isInvalid={errors.observacion}
-                />
-            </FormGroup>
+            <div style={{ textAlign: "left" }}>
+                <FormGroup>
+                    <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                        name="observacion"
+                        value={formState.observacion}
+                        onChange={(e) => handleInputChange(e)}
+                        maxLength={200}
+                        placeholder="Justifique la asignación..."
+                        isInvalid={errors.observacion}
+                    />
+                </FormGroup>
+                <Form.Text muted>
+                    {200 - formState.observacion.length} caracteres restantes
+                </Form.Text>
+            </div>
+
 
             <DatosBasicos />
 
             <AnexosSolicitante />
 
-            <div>
-                <span>
-                    Devolución
-                </span>
-                <FormGroup className="mt-4">
+            <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyItems: "center" }}>
+                <SubtituloForm subtitulo={"¿Desea devolver el caso?"} icon={FaUser} />
+                <FormGroup>
                     <Form.Check
                         type="switch"
                         id="devolucion-switch"
@@ -130,33 +175,40 @@ export function ModalAsignacionARiesgo(row: any) {
                         checked={formState.devolucion}
                         onChange={(e) => handleInputChange(e)}
                     />
-                    {formState.devolucion && (
-                        <>
-                            <FormLabel className="mt-3">Observación de Devolución</FormLabel>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                name="observacionDevolucion"
-                                value={formState.observacionDevolucion}
-                                onChange={(e) => handleInputChange(e)}
-                                maxLength={100}
-                                placeholder="Escriba la observación de devolución (máximo 100 caracteres)..."
-                                isInvalid={errors.observacionDevolucion}
-                                required
-                            />
-                        </>
-                    )}
                 </FormGroup>
             </div>
+            {formState.devolucion && (
+                <div style={{ textAlign: "left" }}>
+                    <FormGroup>
+                        <FormLabel>Observación de Devolución</FormLabel>
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            name="observacionDevolucion"
+                            value={formState.observacionDevolucion}
+                            onChange={(e) => handleInputChange(e)}
+                            maxLength={200}
+                            isInvalid={errors.observacionDevolucion}
+                            required
+                        />
+                    </FormGroup>
+                    <Form.Text muted>
+                        {200 - formState.observacionDevolucion.length} caracteres restantes
+                    </Form.Text>
+                </div>
+            )}
 
             {formState.devolucion && (
-                <Button
-                    variant="danger"
-                    className="mt-3"
-                    onClick={handleDevolver}
-                >
-                    Devolver
-                </Button>
+                <div style={{ textAlign: "right" }}>
+
+                    <Button
+                        variant="danger"
+                        className="mt-3"
+                        onClick={handleDevolver}
+                    >
+                        Devolver
+                    </Button>
+                </div>
             )}
         </>
     );

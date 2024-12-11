@@ -12,18 +12,10 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<InicioSesion />} />
-
-
-
           <Route path="*" element={<Navigate to="/bandeja-casos-lider" />} />
           <Route path="/bandeja-casos-lider" element={<BandejaCasosLider />} />
           <Route path="/bandeja-casos-analista" element={<BandejaCasosAnalista />} />
-
           <Route path="/datos" element={<DatosBasicos />} />
-          
-
-
       </Routes>
     </BrowserRouter>
 

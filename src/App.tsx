@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { BandejaCasosLider } from './pages/BandejaCasosLider';
 import { BandejaCasosAnalista } from './pages/BandejaCasosAnalista';
 import DatosBasicos from './shared/components/DatosBasicos';
+import WebSocketComponent from './WebSocketComponent';
 
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
           <Route path="/bandeja-casos-analista" element={<BandejaCasosAnalista />} />
           <Route path="/datos" element={<DatosBasicos />} />
       </Routes>
+      <div style={{display:'none'}}>
+        <WebSocketComponent />
+      </div>
     </BrowserRouter>
 
   )

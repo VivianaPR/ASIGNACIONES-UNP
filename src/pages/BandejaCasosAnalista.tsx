@@ -34,6 +34,8 @@ export const BandejaCasosAnalista = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     getRegistro(registro, estado, idUsrEnd, idUsrStart);
+                    fetchData();
+                    setUpdate(false);
                 }
             });
             return null;
@@ -99,7 +101,7 @@ export const BandejaCasosAnalista = () => {
     React.useEffect(() => {
         fetchData();
 
-        const intervalTime = 3000000; // medio minuto
+        const intervalTime = 300000; // medio minuto
         const interval = setInterval(async () => {
             await fetchData();
             setUpdate(false);

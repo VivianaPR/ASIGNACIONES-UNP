@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { FaBalanceScale, FaExclamationTriangle, FaSync, FaUserShield } from "react-icons/fa";
 
 interface IconTooltipProps {

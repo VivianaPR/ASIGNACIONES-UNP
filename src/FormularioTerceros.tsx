@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaUser, FaAlignJustify } from "react-icons/fa6";
-import { SubtituloForm, BootstrapTable } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { Form, FormGroup, Col, Row } from "react-bootstrap";
 
 const FormTerceros: React.FC = () => {

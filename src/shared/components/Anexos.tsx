@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { FaAlignJustify } from "react-icons/fa6";
 import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import { FaFile, FaFileImage, FaFileWord, FaUser } from "react-icons/fa6";

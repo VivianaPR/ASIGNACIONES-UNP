@@ -1,5 +1,4 @@
 import IconTooltip from '../../shared/components/tipoSolicitud';
-import { FaEye } from "react-icons/fa";
 
 export const columnsRegistrosAnalista = [
     {
@@ -8,12 +7,12 @@ export const columnsRegistrosAnalista = [
         renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
     },
     {
-        key: 'registro',
+        key: 'numeroRegistro',
         label: 'Registro',
         hasModal: true
     },
     {
-        key: 'radicado',
+        key: 'radicadoRegistro',
         label: 'Radicado',
     },
     {
@@ -21,27 +20,23 @@ export const columnsRegistrosAnalista = [
         label: 'Días hábiles',
     },
     {
-        key: 'nombre',
+        key: 'nombrePersona',
         label: 'Nombre completo',
     },
     {
-        key: 'nuip',
+        key: 'identificacionPersona',
         label: 'Número de Identificación',
     },
     {
-        key: 'celular',
-        label: 'Teléfono o Celular',
+        key: 'generoPersona',
+        label: 'Género',
     },
     {
-        key: 'correo',
-        label: 'Correo electrónico',
-    },
-    {
-        key: 'departamento',
+        key: 'departamentoUbicacion',
         label: 'Departamento',
     },
     {
-        key: 'municipio',
+        key: 'municipioUbicacion',
         label: 'Municipio',
     },
     

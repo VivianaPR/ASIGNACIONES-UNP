@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaUser } from "react-icons/fa6";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { Form, FormGroup, FormLabel, FormSelect, Card, Button } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";

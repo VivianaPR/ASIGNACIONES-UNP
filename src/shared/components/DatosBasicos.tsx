@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaUser, FaUsers, FaUserTag } from "react-icons/fa6";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { Form, Table, Button, Card, CardBody } from "react-bootstrap";
 import { IoIosArrowDropdownCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 

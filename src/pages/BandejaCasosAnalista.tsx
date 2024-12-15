@@ -1,105 +1,80 @@
 import React from "react";
-import { TabVentana, BootstrapTable, VentanaLienzo } from "eco-unp/ui";
-import { columnsRegistrosAnalista, dataRegistrosAnalista } from "./config/TablaRegistrosAnalista";
+import Swal from "sweetalert2";
+import { VentanaLienzo } from "eco-unp/Ui";
+import { BootstrapTable } from "../Tables";
+import { columnsRegistrosAnalista } from "./config/TablaRegistrosAnalista";
+import { fetchBandejaAnalistaAsignaciones } from "../services/BandejaAnalistaAsignaciones";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
-interface Registro {
-    tipoRuta: string;
-    idCanalSolicitud: number;
-    canalSolicitud: string;
-    idTipoSolicitud: number;
-    tipoSolicitud: string;
-    estadoRegistro: number;
-    numeroRegistro: number;
-    diasHabiles: number;
-    fechaSolicitud: string;
-    fechaIngreso: string;
-}
+const userId = "28d73cb5-3b48-4e23-bb93-f301fc2d3aa2";
 
-interface NombrePersona {
-    primerNombre: string;
-    segundoNombre: string;
-    primerApellido: string;
-    segundoApellido: string;
-}
+export const BandejaCasosAnalista = () => {
 
-interface IdentificacionPersona {
-    tipoDocumento: string;
-    numeroDocumento: string;
-    fechaExpedicion: string;
-}
-
-interface UbicacionPersona {
-    departamento: string;
-    municipio: string;
-    zona: string;
-    direccion: string;
-}
-
-interface ApiResponse {
-    registro: Registro;
-    radicado: string;
-    nombrePersona: NombrePersona;
-    edadPersona: number;
-    generoPersona: string;
-    identificacionPersona: IdentificacionPersona;
-    ubicacionPersona: UbicacionPersona;
-    cantidadSituacion: number;
-    cantidadMedio: number;
-}
-
-interface Solicitud {
-    solicitud: number;
-    canalSolicitud: string;
-    estadoRegistro: number;
-    numeroRegistro: number;
-    registroCompleto: Registro;
-    radicado: string;
-    diasHabiles: number;
-    nombrePersona: string;
-    identificacionPersona: string;
-    identificacionPersonaCompleto: IdentificacionPersona;
-    ubicacionPersona: string;
-    ubicacionPersonaCompleto: UbicacionPersona;
-    complementarios: string;
-}
-
-// 
-const transformarDatos = (data: ApiResponse): Solicitud => {
-
-    return {
-        solicitud: data.registro.idTipoSolicitud,
-        canalSolicitud: data.registro.canalSolicitud,
-        estadoRegistro: data.registro.estadoRegistro,
-        numeroRegistro: data.registro.numeroRegistro,
-        registroCompleto: data.registro,
-        radicado: data.radicado,
-        diasHabiles: data.registro.diasHabiles,
-        nombrePersona: (data.nombrePersona ?
-            data.nombrePersona.primerNombre +
-            (data.nombrePersona.segundoNombre ? ' ' + data.nombrePersona.segundoNombre : '') +
-            ' ' + data.nombrePersona.primerApellido +
-            (data.nombrePersona.segundoApellido ? ' ' + data.nombrePersona.segundoApellido : '')
-            : ''),
-        identificacionPersona: (data.identificacionPersona ?
-            (data.identificacionPersona.tipoDocumento === 'Cédula de ciudadanía' ?
-                'C.C.' : data.identificacionPersona.tipoDocumento === 'Tarjeta de identidad' ?
-                    'T.I.' : data.identificacionPersona.tipoDocumento === 'Pasaporte' ?
-                        'P.P.' : 'C.E.') + ' ' + data.identificacionPersona.numeroDocumento
-            : ''),
-        identificacionPersonaCompleto: data.identificacionPersona,
-        ubicacionPersona: data.ubicacionPersona ? data.ubicacionPersona.departamento + ', ' + data.ubicacionPersona.municipio : '',
-        ubicacionPersonaCompleto: data.ubicacionPersona,
-        complementarios: data.generoPersona,
-    };
-};
-
-export function BandejaCasosAnalista() {
-
-    const [data, setData] = React.useState<Solicitud[]>([]);
+    const [data, setData] = React.useState<any[]>([]);
     const [update, setUpdate] = React.useState(false);
-    const url = 'http://127.0.0.1:8000/registro/liderasignacion/'
+
+    const renderAlertContent = (row: Record<string, any>, column: any): void | null => {
+
+        const registro = row.numeroRegistro;
+        const estado = '17'; // Para casos tomados por el Analista de Asignaciones
+        const idUsrEnd = row.idUsuario;
+        const idUsrStart = userId;
+
+        if (row.idUsuario !== userId) {
+            Swal.fire({
+                title: "<small>¿Está seguro de tomar este registro?</small>",
+                text: "Tenga presente que, una vez lo haga, deberá darle trámite en los tiempos definidos en el procedimiento.",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: "#3488C9",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, tomar registro",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    getRegistro(registro, estado, idUsrEnd, idUsrStart);
+                }
+            });
+            return null;
+        }
+        renderModalContent(row, column);
+    };
+
+    const getRegistro = async (registro: string, estado: string, idUsrEnd: string, idUsrStart: string) => {
+
+        const url = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro'; 
+
+        const data = {
+            registro: registro,
+            estado: estado,
+            idUsrEnd: idUsrEnd,
+            idUsrStart: idUsrStart
+        };
+    
+        try {
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer TU_TOKEN_DE_AUTORIZACION' // Si necesitas autenticación
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+    
+            const result = await response.json();
+            console.log('Respuesta del backend:', result);
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    };
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
@@ -112,46 +87,44 @@ export function BandejaCasosAnalista() {
         }
     };
 
+    const fetchData = async () => {
+        const fetchedData = await fetchBandejaAnalistaAsignaciones();
+        const combinedData = [
+            ...fetchedData.enGestion.map((item: any) => ({ ...item, estadoRegistro: 'en_gestion' })),
+            ...fetchedData.porGestionar.map((item: any) => ({ ...item, estadoRegistro: 'por_gestionar' }))
+        ];
+        setData(combinedData);
+    };
+
     React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(url);
-                const result = await response.json();
-                const filteredData = result
-                    .map((item: ApiResponse) => transformarDatos(item))
-                    .filter((item: Solicitud) => item.estadoRegistro === 16);
-                setData(filteredData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
         fetchData();
-        setUpdate(false);
-        console.log('se actualiza')
 
-        const intervalTime = 60000; // 1 minuto en ms
-
+        const intervalTime = 3000000; // medio minuto
         const interval = setInterval(async () => {
             await fetchData();
             setUpdate(false);
         }, intervalTime);
 
         return () => clearInterval(interval);
-    }, [url, update]);
+    }, [update]);
 
     return (
         <VentanaLienzo>
-            <div className="tables-container">
+            <div style={{ paddingTop: 30 }}>
                 <BootstrapTable
                     columns={columnsRegistrosAnalista}
-                    data={dataRegistrosAnalista}
+                    data={data}
                     renderModalContent={renderModalContent}
-                    totalDias={20} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}></BootstrapTable>
+                    renderAlertContent={renderAlertContent}
+                    totalDias={20}
+                    subtitle={"Subdirección de Evaluación de Riesgo"}
+                    items={"Grupo Cuerpo Técnico de Análisis de Riesgo (CTAR)"}
+                    isShared={true}
+                />
             </div>
         </VentanaLienzo>
-    )
-
+    );
 
 }
 
+export default BandejaCasosAnalista

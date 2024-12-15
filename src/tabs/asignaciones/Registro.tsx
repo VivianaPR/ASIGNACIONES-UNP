@@ -1,5 +1,5 @@
 import React from "react";
-import { BootstrapTable } from "eco-unp/ui";
+import { BootstrapTable } from "eco-unp/Tables";
 import { columnsRegistrosLider } from "../../pages/config/TablaRegistrosLider";
 import { ModalRegistroLider } from "../../modals/ModalRegistroLider";
 import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";

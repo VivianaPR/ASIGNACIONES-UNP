@@ -1,5 +1,5 @@
 import React from "react";
-import { BootstrapTable } from "eco-unp/ui";
+import { BootstrapTable } from "eco-unp/Tables";
 import { columnsAsignacionLider } from "../../pages/config/TablaRegistrosLider";
 import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";
 import { columnsAsignacionesLider, dataAsignacionesLider } from "../../pages/config/TablaAsignacionesLider";

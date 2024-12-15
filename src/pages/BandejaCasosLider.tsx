@@ -1,8 +1,9 @@
 import React from "react";
-import { TabVentana, BootstrapTable, VentanaUsuario } from "eco-unp/ui";
+import { TabVentana, VentanaUsuario } from "eco-unp/Ui";
+import { BootstrapTable } from "eco-unp/Tables";
 import { columnsHistoricoLider, dataHistoricoLider } from "./config/TablaHistoricoLider";
-import { RegistroAsignacion } from "../tabs/asignacion/Registro";
-import { AsignacionAsignacion } from "../tabs/asignacion/Asignacion";
+import { RegistroAsignacion } from "../tabs/asignaciones/Registro";
+import { AsignacionAsignacion } from "../tabs/asignaciones/Asignacion";
 import { Tabs } from "react-bootstrap";
 import { columnsRegistrosLider, dataRegistrosLider } from "./config/TablaRegistrosLider";
 import { columnsAsignacionesLider, dataAsignacionesLider } from "./config/TablaAsignacionesLider";

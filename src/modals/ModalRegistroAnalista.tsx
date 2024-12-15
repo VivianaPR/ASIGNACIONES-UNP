@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUser, FaAlignJustify, FaUserShield } from "react-icons/fa6";
-import { SubtituloForm } from "eco-unp/ui";
+import { SubtituloForm } from "eco-unp/Ui";
 import { Form, FormGroup, FormLabel, FormSelect } from "react-bootstrap";
 import { IconBaseProps } from "react-icons";
 import { relative } from "path";

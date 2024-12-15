@@ -5,6 +5,8 @@ function transformarDatos(data: any): any {
         solicitud: data.registro.idTipoSolicitud,
         idUsuario: data.registro.usuario,
         numeroRegistro: data.registro.numeroRegistro,
+        fechaSolicitudRegistro: data.registro.fechaSolicitud,
+        fechaRecepcionRegistro: data.registro.fechaIngreso.split(' ')[0],
         radicadoRegistro: data.radicado,
         diasHabiles: data.registro.diasHabiles,
         nombrePersona: (data.nombrePersona ?

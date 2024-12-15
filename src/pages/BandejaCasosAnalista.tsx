@@ -20,7 +20,7 @@ export const BandejaCasosAnalista = () => {
         const estado = '17'; // Para casos tomados por el Analista de Asignaciones
         const idUsrEnd = row.idUsuario;
         const idUsrStart = userId;
-
+    
         if (row.idUsuario !== userId) {
             Swal.fire({
                 title: "<small>¿Está seguro de tomar este registro?</small>",
@@ -31,9 +31,11 @@ export const BandejaCasosAnalista = () => {
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Sí, tomar registro",
                 cancelButtonText: "Cancelar"
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    getRegistro(registro, estado, idUsrEnd, idUsrStart);
+                    await getRegistro(registro, estado, idUsrEnd, idUsrStart);
+                    await fetchData();
+                    setUpdate(false);
                 }
             });
             return null;
@@ -44,7 +46,7 @@ export const BandejaCasosAnalista = () => {
     const getRegistro = async (registro: string, estado: string, idUsrEnd: string, idUsrStart: string) => {
 
         const url = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro'; 
-
+    
         const data = {
             registro: registro,
             estado: estado,
@@ -53,7 +55,7 @@ export const BandejaCasosAnalista = () => {
         };
     
         try {
-
+    
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -69,16 +71,16 @@ export const BandejaCasosAnalista = () => {
     
             const result = await response.json();
             console.log('Respuesta del backend:', result);
-
+    
         } catch (error) {
             console.error('Error:', error);
         }
-
+    
     };
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
-            case "registro":
+            case "numeroRegistro":
                 return (<ModalRegistroAnalista row={row} update={setUpdate} />);
             case "registro_tablaAsignacionARiesgo":
                 return (<ModalAsignacionARiesgo />);

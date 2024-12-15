@@ -101,7 +101,7 @@ export const BandejaCasosAnalista = () => {
     React.useEffect(() => {
         fetchData();
 
-        const intervalTime = 3000000; // medio minuto
+        const intervalTime = 300000; // medio minuto
         const interval = setInterval(async () => {
             await fetchData();
             setUpdate(false);

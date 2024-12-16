@@ -1,32 +1,54 @@
 import React, { useEffect, useState } from 'react';
 
-const WebSocketComponent: React.FC = () => {
-    const [message, setMessage] = useState<string>('');
+interface WebSocketComponentProps {
+    registro: string;
+}
+
+interface DataState {
+    en_gestion: any[];
+    por_gestionar: any[];
+}
+
+const WebSocketComponent: React.FC<WebSocketComponentProps> = ({ registro }) => {
+    const [data, setData] = useState<DataState>({ en_gestion: [], por_gestionar: [] });
 
     useEffect(() => {
-        // Establecer la conexión WebSocket
-        const socket = new WebSocket('ws://localhost:8000/ws/some_path/');
+        const socket = new WebSocket(`ws://localhost:8000/ws/some_path/?registro=${registro}`);
 
-        // Evento cuando se abre la conexión
         socket.onopen = () => {
-            console.log('Conexión WebSocket establecida.');
+            console.log('WebSocket connection opened');
         };
 
-        // Evento cuando se recibe un mensaje
         socket.onmessage = (event) => {
-            setMessage(event.data);
+            const message = JSON.parse(event.data);
+            console.log('WebSocket message received:', message);
+            setData(message.message); // Actualiza el estado con los datos recibidos
         };
 
-        // Limpiar la conexión cuando el componente se desmonta
+        socket.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
+
         return () => {
             socket.close();
         };
-    }, []);
+    }, [registro]);
 
     return (
         <div>
-            <h1>Demo de WebSocket</h1>
-            <p>Mensaje recibido: {message}</p>
+            <h1>WebSocket Data</h1>
+            <h2>En Gestión</h2>
+            <ul>
+                {data.en_gestion && data.en_gestion.map((item, index) => (
+                    <li key={index}>{JSON.stringify(item)}</li>
+                ))}
+            </ul>
+            <h2>Por Gestionar</h2>
+            <ul>
+                {data.por_gestionar && data.por_gestionar.map((item, index) => (
+                    <li key={index}>{JSON.stringify(item)}</li>
+                ))}
+            </ul>
         </div>
     );
 };

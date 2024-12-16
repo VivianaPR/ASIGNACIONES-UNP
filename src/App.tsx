@@ -16,9 +16,6 @@ function App() {
           <Route path="/bandeja-casos-analista" element={<BandejaCasosAnalista />} />
           <Route path="/datos" element={<DatosBasicos />} />
       </Routes>
-      <div style={{display:'none'}}>
-        <WebSocketComponent />
-      </div>
     </BrowserRouter>
 
   )

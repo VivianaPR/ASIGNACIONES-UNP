@@ -6,16 +6,16 @@ import { columnsRegistrosAnalista } from "./config/TablaRegistrosAnalista";
 import { fetchBandejaAnalistaAsignaciones } from "../services/BandejaAnalistaAsignaciones";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
+import WebSocketComponent from "../WebSocketComponent";
 
 const userId = "28d73cb5-3b48-4e23-bb93-f301fc2d3aa2";
 
 export const BandejaCasosAnalista = () => {
-
     const [data, setData] = React.useState<any[]>([]);
     const [update, setUpdate] = React.useState(false);
+    const [selectedRegistro, setSelectedRegistro] = React.useState<string | null>(null);
 
     const renderAlertContent = (row: Record<string, any>, column: any): void | null => {
-
         const registro = row.numeroRegistro;
         const estado = '17'; // Para casos tomados por el Analista de Asignaciones
         const idUsrEnd = row.idUsuario;
@@ -40,11 +40,11 @@ export const BandejaCasosAnalista = () => {
             });
             return null;
         }
+        setSelectedRegistro(registro); // Establece el registro seleccionado
         renderModalContent(row, column);
     };
 
     const getRegistro = async (registro: string, estado: string, idUsrEnd: string, idUsrStart: string) => {
-
         const url = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro'; 
 
         const data = {
@@ -53,9 +53,8 @@ export const BandejaCasosAnalista = () => {
             idUsrEnd: idUsrEnd,
             idUsrStart: idUsrStart
         };
-    
-        try {
 
+        try {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -64,18 +63,17 @@ export const BandejaCasosAnalista = () => {
                 },
                 body: JSON.stringify(data)
             });
-    
+
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
             }
-    
+
             const result = await response.json();
             console.log('Respuesta del backend:', result);
 
         } catch (error) {
             console.error('Error:', error);
         }
-
     };
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
@@ -100,14 +98,7 @@ export const BandejaCasosAnalista = () => {
 
     React.useEffect(() => {
         fetchData();
-
-        const intervalTime = 300000; // medio minuto
-        const interval = setInterval(async () => {
-            await fetchData();
-            setUpdate(false);
-        }, intervalTime);
-
-        return () => clearInterval(interval);
+        setUpdate(false);
     }, [update]);
 
     return (
@@ -123,10 +114,12 @@ export const BandejaCasosAnalista = () => {
                     items={"Grupo Cuerpo Técnico de Análisis de Riesgo (CTAR)"}
                     isShared={true}
                 />
+                      <div style={{display:'none'}}>
+                        {selectedRegistro && <WebSocketComponent registro={selectedRegistro} />}
+                      </div>
             </div>
         </VentanaLienzo>
     );
+};
 
-}
-
-export default BandejaCasosAnalista
+export default BandejaCasosAnalista;

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { SubtituloForm } from "eco-unp/Ui";
-import { FaAlignJustify } from "react-icons/fa6";
 import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
-import { FaFile, FaFileImage, FaFileWord, FaUser } from "react-icons/fa6";
-
-import { Card, Row, Col } from "react-bootstrap";
-import { hover } from "@testing-library/user-event/dist/hover";
+import { FaFile, FaFileImage, FaFileWord } from "react-icons/fa6";
+import { GrAttachment } from "react-icons/gr";
 
 interface Anexo {
   nombre_archivo: string;
@@ -53,7 +50,7 @@ const AnexosSolicitante: React.FC<any> = ({row}) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   return (
     <>
-      <SubtituloForm subtitulo={"Anexos"} icon={FaAlignJustify} />
+      <SubtituloForm subtitulo={"Anexos"} icon={GrAttachment} />
 
       <div className="modal_proccess_container">
        

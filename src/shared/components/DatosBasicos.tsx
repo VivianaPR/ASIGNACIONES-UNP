@@ -25,29 +25,26 @@ const DatosBasicos: React.FC<Props> = ({ registro, fechaRegistro, fechaRecepcion
     React.useEffect(() => {
         const fetchData = async () => {
             try {
+
                 const fetchedDatosBasicos = await fetchDatosBasicosPersona(registro);
                 const fetchedPoblacion = await fetchPoblacionObjetoPersona(registro);
                 const fetchFactorDiferencial = await fetchFactorDiferencialPersona(registro);
+    
+                const combinedData = {
+                    ...fetchedDatosBasicos[0],
+                    ...fetchedPoblacion[0],
+                    ...fetchFactorDiferencial[0],
+                };
 
-                if (fetchedDatosBasicos.length > 0 && fetchedPoblacion.length > 0 && fetchFactorDiferencial.length > 0) {
-                    const combinedData = {
-                        ...fetchedDatosBasicos[0],
-                        ...fetchedPoblacion[0],
-                        ...fetchFactorDiferencial[0],
-                    };
-                    setData(combinedData);
-                } else {
-                    console.error("Error: Datos incompletos o incorrectamente estructurados");
-                    setData({});
-                }
+                setData(combinedData);
+
             } catch (error) {
                 console.error("Error fetching data:", error);
                 setData({});
             }
         };
-
+    
         fetchData();
-
     }, [registro]);
 
     return (

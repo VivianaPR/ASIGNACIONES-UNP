@@ -100,14 +100,7 @@ export const BandejaCasosAnalista = () => {
 
     React.useEffect(() => {
         fetchData();
-
-        const intervalTime = 300000; // medio minuto
-        const interval = setInterval(async () => {
-            await fetchData();
-            setUpdate(false);
-        }, intervalTime);
-
-        return () => clearInterval(interval);
+        setUpdate(false);
     }, [update]);
 
     return (
@@ -120,7 +113,7 @@ export const BandejaCasosAnalista = () => {
                     renderAlertContent={renderAlertContent}
                     totalDias={20}
                     subtitle={"Subdirección de Evaluación de Riesgo"}
-                    items={"Grupo Cuerpo Técnico de Análisis de Riesgo (CTAR)"}
+                    items={"Asignaciones"}
                     isShared={true}
                 />
             </div>

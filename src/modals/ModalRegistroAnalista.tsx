@@ -1,42 +1,102 @@
-import React from "react";
-import { FaUser, FaUserShield } from "react-icons/fa6";
-import { SubtituloForm } from "eco-unp/Ui";
-import { Form, FormGroup, FormSelect } from "react-bootstrap";
-import AnexosSolicitante from "../shared/components/Anexos";
-import DatosBasicos from "../shared/components/DatosBasicos";
-import { useState } from "react";
+import React from 'react';
+import { FaUser, FaFolderClosed, FaFileCircleQuestion, FaListUl } from 'react-icons/fa6';
+import { SubtituloForm } from 'eco-unp/Ui';
+import { Form, FormGroup, FormSelect } from 'react-bootstrap';
+import AnexosSolicitante from '../shared/components/Anexos';
+import DatosBasicos from '../shared/components/DatosBasicos';
+import { fetchGestionSolicitud, fetchGestionTipoEstudio } from '../services/GestionAnalistaAsignaciones';
 
 interface Props {
   row?: any;
   update: any;
 }
 
-export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
+interface TipoEstudio {
+  id_tsolicitud: number;
+  nombre_tsolicitud: string;
+}
 
-  const [text, setText] = useState("");
+interface GestionSolicitud {
+  id: number;
+  nombre: string;
+}
+
+export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
+
+  const [tiposEstudio, setTiposEstudio] = React.useState<TipoEstudio[]>([]);
+  const [gestionSolicitud, setGestionSolicitud] = React.useState<GestionSolicitud[]>([]);
+  const [selectedTipoEstudio, setSelectedTipoEstudio] = React.useState('');
+  const [selectedGestion, setSelectedGestion] = React.useState('');
+  const [text, setText] = React.useState('');
   const numeroRegistro = row.numeroRegistro;
   const fechaRegistro = row.fechaSolicitudRegistro;
   const fechaRecepcion = row.fechaRecepcionRegistro;
 
+  React.useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const fetchedGestionSolicitud = await fetchGestionSolicitud();
+        const fetchedTipoEstudio = await fetchGestionTipoEstudio();
+
+        setTiposEstudio(fetchedTipoEstudio);
+        setGestionSolicitud(fetchedGestionSolicitud);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
+
   const send = async () => {
+
+    const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro';
+    const urlTipoEstudio = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/actualizartipoestudio/';
+
     try {
-      const response = await fetch('http://127.0.0.1:8000/sistema/trazabilidad/registro', {
+
+      const response = await fetch(urlTrazabilidad, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(
-          {
-            "registro": row.numeroRegistro,
-            "estado": 19 // Cambia el estado a Remitido a líder de asignaciones para asignar a analista de asignaciones
-          }
-        )
+        body: JSON.stringify({
+          registro: row.numeroRegistro,
+          estado: selectedGestion,
+          obs: text
+        }),
       });
 
       const result = await response.json();
-      console.log(result);
 
-      if (result.status === "success") {
+      if (result.status === 'success') {
+
+        try {
+
+          const response = await fetch(urlTipoEstudio, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              registro: row.numeroRegistro,
+              tipoEstudio: selectedTipoEstudio
+            }),
+          });
+
+          const result = await response.json();
+
+          if (result.status === 'success') {
+            update(true);
+          } else {
+            console.error('Failed to update registro state.');
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+
         update(true);
       } else {
         console.error('Failed to update registro state.');
@@ -44,41 +104,40 @@ export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
+
+  };
 
   return (
     <>
-      <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion}/> 
+      <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion} />
       <AnexosSolicitante />
 
-      <SubtituloForm subtitulo={"Tipo de Estudio"} icon={FaUserShield} />
+      <SubtituloForm subtitulo={'Tipo de estudio'} icon={FaFileCircleQuestion} />
       <FormGroup className="mt-2 text-start">
-        <FormSelect>
+        <FormSelect value={selectedTipoEstudio} onChange={(e) => setSelectedTipoEstudio(e.target.value)}>
           <option value="">Seleccione...</option>
-          <option>Estudio por primera vez</option>
-          <option>Reevaluación por temporalidad</option>
-          <option>Reevaluación por hechos sobrevinientes</option>
-          <option>Devolución por CERREM</option>
-          <option>Evaluación de riesgo otra solicitud</option>
+          {tiposEstudio.map((tipo) => (
+            <option key={tipo.id_tsolicitud} value={tipo.id_tsolicitud}>
+              {tipo.nombre_tsolicitud}
+            </option>
+          ))}
         </FormSelect>
       </FormGroup>
 
       <FormGroup>
-        <SubtituloForm subtitulo={"Gestión"} icon={FaUser} />
-        <FormSelect>
+        <SubtituloForm subtitulo={'Gestión'} icon={FaFolderClosed} />
+        <FormSelect value={selectedGestion} onChange={(e) => setSelectedGestion(e.target.value)}>
           <option value="">Seleccione...</option>
-          <option value="1">Devolver a Servicio al Ciudadano</option>
-          <option value="2">
-            Confirmar y enviar a asignación de analista de riesgo
-          </option>
-          <option value="3">
-            Remitir a Subdirección Especializada de Protección
-          </option>
+          {gestionSolicitud.map((gestion) => (
+            <option key={gestion.id} value={gestion.id}>
+              {gestion.nombre}
+            </option>
+          ))}
         </FormSelect>
       </FormGroup>
 
       <FormGroup>
-        <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
+        <SubtituloForm subtitulo={'Observación'} icon={FaListUl} />
         <Form.Control
           as="textarea"
           rows={3}
@@ -87,10 +146,12 @@ export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
           placeholder="Escribe aquí una observación sobre el caso..."
         />
       </FormGroup>
-      <div style={{display: "flex",  justifyContent: "right", marginTop: "1rem"}}>
 
-        <button className="btn btn-primary" onClick={send}>Enviar</button>
+      <div style={{ display: 'flex', justifyContent: 'right', marginTop: '1rem' }}>
+        <button className="btn btn-primary" onClick={send} disabled={!selectedTipoEstudio || !selectedGestion}>
+          Enviar
+        </button>
       </div>
     </>
   );
-}
+};

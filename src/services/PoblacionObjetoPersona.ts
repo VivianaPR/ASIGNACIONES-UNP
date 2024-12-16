@@ -18,7 +18,6 @@ function transformarDatos(data: any): any {
     };
 }
 
-
 const fetchPoblacionObjetoPersona = async (registro: string | undefined) => {
 
     const url = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/poblacion/?registro=' + registro;

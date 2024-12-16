@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import { FaBalanceScale, FaExclamationTriangle, FaSync, FaUserShield } from "react-icons/fa";
+import { Button } from 'react-bootstrap';
 
 interface IconTooltipProps {
     solicitud: number;
 }
 
 const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
+
     const [showTooltip, setShowTooltip] = useState(false);
 
     let tooltipText = '';
-    let color = '';
+    let style = {};
+    let variant = '';
     let Icon = null;
 
     switch (solicitud) {
         case 1:
             tooltipText = "Emergencia";
-            color = "#FF0000";
+            style = { backgroundColor: '#1272b7', color: '#ffffff', fontSize: 16};
             Icon = FaExclamationTriangle;
             break;
         case 2:
             tooltipText = "Jurídico";
-            color = "#FFA500";
             Icon = FaBalanceScale;
             break;
         case 3:
             tooltipText = "Reasignación";
-            color = "#FFFF00";
             Icon = FaSync;
             break;
         case 4:
             tooltipText = "Caso por Nombrar";
-            color = "#0000FF";
             Icon = FaUserShield;
             break;
         default:
@@ -43,36 +43,31 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
 
     return (
         <div style={{ position: "relative", display: "inline-block" }}>
-            <div
+            <Button
+                variant={variant}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.5em",
-                    color,
-                }}
+                style={{ ...style, position: "relative", zIndex: 1 }} // Asegura que el botón esté por encima de otros elementos
             >
                 <Icon />
-            </div>
+            </Button>
             {showTooltip && (
                 <div
                     style={{
                         position: "absolute",
-                        top: "50%", 
-                        left: "110%", 
-                        transform: "translateY(-50%)", 
+                        top: "50%", // Ajusta la posición vertical al centro del ícono
+                        left: "110%", // Posiciona el tooltip a la derecha del ícono
+                        transform: "translateY(-50%)", // Centra el tooltip verticalmente
                         backgroundColor: "#333",
                         color: "#fff",
                         padding: "8px 12px",
                         borderRadius: "8px",
                         fontSize: "0.9em",
                         whiteSpace: "nowrap",
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)", 
-                        opacity: showTooltip ? 1 : 0, 
-                        visibility: showTooltip ? "visible" : "hidden", 
-                        zIndex: 1000, 
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)", // Sombra para mayor visibilidad
+                        opacity: showTooltip ? 1 : 0, // Transición de opacidad
+                        visibility: showTooltip ? "visible" : "hidden", // Manejo de visibilidad
+                        zIndex: 1000, // Asegúrate de que esté por encima de otros elementos
                         transition: "opacity 0.3s ease, visibility 0.3s ease",
                     }}
                 >
@@ -84,3 +79,4 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
 };
 
 export default IconTooltip;
+

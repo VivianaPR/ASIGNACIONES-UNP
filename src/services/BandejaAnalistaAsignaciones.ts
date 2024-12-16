@@ -6,7 +6,7 @@ function transformarDatos(data: any): any {
         idUsuario: data.registro.usuario,
         numeroRegistro: data.registro.numeroRegistro,
         fechaSolicitudRegistro: data.registro.fechaSolicitud,
-        fechaRecepcionRegistro: data.registro.fechaIngreso.split(' ')[0],
+        fechaRecepcionRegistro: data.registro.fechaIngreso ? data.registro.fechaIngreso.split(' ')[0] : 'No registra',
         radicadoRegistro: data.radicado,
         diasHabiles: data.registro.diasHabiles,
         nombrePersona: (data.nombrePersona ?

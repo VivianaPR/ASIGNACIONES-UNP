@@ -188,7 +188,7 @@ const BootstrapTable: React.FC<TableProps> = ({
                     <tr>
                       <td colSpan={columns.length} className="text-center">
                         <div style={{
-                          minHeight: 37,
+                          minHeight: 20,
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',

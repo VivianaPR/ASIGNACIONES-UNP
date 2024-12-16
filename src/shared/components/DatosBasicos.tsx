@@ -1,48 +1,45 @@
 import React, { useState } from "react";
 import { FaUser, FaUsers, FaUserTag } from "react-icons/fa6";
 import { SubtituloForm } from "eco-unp/Ui";
-import { Form, Table, Button, Card, CardBody } from "react-bootstrap";
+import { Form, Table, Button } from "react-bootstrap";
 import { IoIosArrowDropdownCircle, IoIosArrowDroprightCircle } from "react-icons/io";
+import { fetchDatosBasicosPersona } from "../../services/DatosBasicosPersona";
 
-const DatosBasicos: React.FC = () => {
-    const [formData] = useState({
-        fechaLlegada: "2024-10-29",
-        nombreCompleto: "Carlos Stiven Hernandez Tarazona",
-        tipoDocumento: "Cédula",
-        numeroIdentificacion: "123456789",
-        sexo: "Masculino",
-        departamento: "Tolima",
-        municipio: "Ibagué",
-        direccion: "Carrera 5 #10-12",
-        telefono: "3201234567",
-        tipoGrupo: "Víctimas de violaciones a los DDHH e infracciones al DIH, incluyendo dirigentes, líderes, representantes de Organizaciones de población desplazada o de reclamantes de tierras en situación de riesgo extraordinario o extremo.",
-        subcategoria: "Dirigente, representante y líder de población desplazada.",
-        otrosGrupos: "Persona reclamante de tierras.",
-        genero: "Masculino",
-        orientacionSexual: "Heterosexual",
-        factorDiferencial: "Víctima del conflicto armado",
-        personasACargo: "3",
-        discapacidad: "Sí",
-        tipoDiscapacidad: "Visual",
-        autorreconocidoEtnico: "Sí",
-        grupoEtnico: "Indígena",
-        etniaIndigena: "Wayuu",
-        resguardo: "Resguardo de Uribia",
-        comunidadResguardo: "Comunidad Uribia Centro",
-        parcialidad: "La Paz",
-        comunidadSinRegistro: "Comunidad de Woumain",
-        nombreConsejoComunitario: "",
-    });
+interface Props {
+    registro?: string;
+    fechaRegistro?: string;
+    fechaRecepcion?: string;
+  }
 
+const DatosBasicos: React.FC<Props> = ({registro, fechaRegistro, fechaRecepcion}) => {
+
+    const [data, setData] = useState<any[]>([]);
     const [showDatosPersonales, setShowDatosPersonales] = useState(false);
     const [showGrupoPoblacional, setShowGrupoPoblacional] = useState(false);
     const [showFactorDiferencial, setShowFactorDiferencial] = useState(false);
 
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const fetchedData = await fetchDatosBasicosPersona(registro);
+            setData(fetchedData);
+        };
+
+        fetchData();
+
+    }, [registro]);
+
     return (
         <>
+      <div className="">
+        <div className="modal_subtitle_container">
+          <div className="red-section">1</div>
+          <span className="modal-subtitle" style={{fontWeight: '500'}}>{registro} - {fechaRegistro} - {fechaRecepcion}</span>
+        </div>
+      </div>
             <div className="item_container">
+                
                 <div className="tittle-container-modal">
-                    <SubtituloForm subtitulo={"Datos Básicos"} icon={FaUser} />
+                    <SubtituloForm subtitulo={"Datos básicos"} icon={FaUser} />
                     <Button
                         variant="link"
                         onClick={() => setShowDatosPersonales(!showDatosPersonales)}
@@ -59,40 +56,40 @@ const DatosBasicos: React.FC = () => {
                         <Table responsive striped className="mb-4">
                             <tbody>
                                 <tr>
-                                    <th className="text-start">Fecha de Llegada</th>
-                                    <td className="text-start">{formData.fechaLlegada}</td>
+                                    <th className="text-start">Nombre completo</th>
+                                    <td className="text-start">{data[0].nombrePersona}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Nombre Completo</th>
-                                    <td className="text-start">{formData.nombreCompleto}</td>
+                                    <th className="text-start">Tipo de identificación</th>
+                                    <td className="text-start">{data[0].tipoIdentificacion}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Tipo de Documento</th>
-                                    <td className="text-start">{formData.tipoDocumento}</td>
+                                    <th className="text-start">Número de identificación</th>
+                                    <td className="text-start">{data[0].numeroIdentificacion}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Número de Identificación</th>
-                                    <td className="text-start">{formData.numeroIdentificacion}</td>
+                                    <th className="text-start">Fecha de expedición</th>
+                                    <td className="text-start">{data[0].fechaExpedicion}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Sexo</th>
-                                    <td className="text-start">{formData.sexo}</td>
+                                    <th className="text-start">Género</th>
+                                    <td className="text-start">{data[0].generoPersona}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Departamento</th>
-                                    <td className="text-start">{formData.departamento}</td>
+                                    <th className="text-start">País de nacimiento</th>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Municipio</th>
-                                    <td className="text-start">{formData.municipio}</td>
+                                    <th className="text-start">Departamento de nacimiento</th>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Dirección</th>
-                                    <td className="text-start">{formData.direccion}</td>
+                                    <th className="text-start">Municipio de nacimiento</th>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
-                                    <th className="text-start">Teléfono</th>
-                                    <td className="text-start">{formData.telefono}</td>
+                                    <th className="text-start">Fecha de nacimiento</th>
+                                    <td className="text-start">{}</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -120,15 +117,15 @@ const DatosBasicos: React.FC = () => {
                             <tbody>
                                 <tr>
                                     <th className="text-start">Población</th>
-                                    <td className="text-start">{formData.tipoGrupo}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">Subpoblación</th>
-                                    <td className="text-start">{formData.subcategoria}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">Otras Poblaciones</th>
-                                    <td className="text-start">{formData.otrosGrupos}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -156,25 +153,25 @@ const DatosBasicos: React.FC = () => {
                             <tbody>
                                 <tr>
                                     <th className="text-start">Género</th>
-                                    <td className="text-start">{formData.genero}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">Orientación Sexual</th>
-                                    <td className="text-start">{formData.orientacionSexual}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">Factor Diferencial</th>
-                                    <td className="text-start">{formData.factorDiferencial}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">Personas a Cargo</th>
-                                    <td className="text-start">{formData.personasACargo}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
                                 <tr>
                                     <th className="text-start">¿Posee algún tipo de discapacidad?</th>
-                                    <td className="text-start">{formData.discapacidad}</td>
+                                    <td className="text-start">{}</td>
                                 </tr>
-                                {formData.discapacidad === "Sí" && (
+                                {/* {formData.discapacidad === "Sí" && (
                                     <tr>
                                         <th className="text-start">Tipo de Discapacidad</th>
                                         <td className="text-start">{formData.tipoDiscapacidad}</td>
@@ -219,9 +216,9 @@ const DatosBasicos: React.FC = () => {
                                                 <th className="text-start">Consejo Comunitario</th>
                                                 <td className="text-start">{formData.nombreConsejoComunitario}</td>
                                             </tr>
-                                        )}
+                                        )} 
                                     </>
-                                )}
+                                )} */}
                             </tbody>
                         </Table>
                     </Form>

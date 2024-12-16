@@ -1,9 +1,7 @@
 import React from "react";
-import { FaUser, FaAlignJustify, FaUserShield } from "react-icons/fa6";
+import { FaUser, FaUserShield } from "react-icons/fa6";
 import { SubtituloForm } from "eco-unp/Ui";
-import { Form, FormGroup, FormLabel, FormSelect } from "react-bootstrap";
-import { IconBaseProps } from "react-icons";
-import { relative } from "path";
+import { Form, FormGroup, FormSelect } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
 import { useState } from "react";
@@ -14,7 +12,11 @@ interface Props {
 }
 
 export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
+
   const [text, setText] = useState("");
+  const numeroRegistro = row.numeroRegistro;
+  const fechaRegistro = row.fechaSolicitudRegistro;
+  const fechaRecepcion = row.fechaRecepcionRegistro;
 
   const send = async () => {
     try {
@@ -46,8 +48,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({row, update}) => {
 
   return (
     <>
-      <DatosBasicos /> 
-      
+      <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion}/> 
       <AnexosSolicitante />
 
       <SubtituloForm subtitulo={"Tipo de Estudio"} icon={FaUserShield} />

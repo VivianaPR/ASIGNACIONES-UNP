@@ -12,6 +12,10 @@ export const columnsRegistrosAnalista = [
         hasModal: true
     },
     {
+        key: 'fechaSolicitudRegistro',
+        label: 'F. de la solicitud',
+    },
+    {
         key: 'radicadoRegistro',
         label: 'Radicado',
     },
@@ -25,7 +29,7 @@ export const columnsRegistrosAnalista = [
     },
     {
         key: 'identificacionPersona',
-        label: 'Número de Identificación',
+        label: 'Identificación',
     },
     {
         key: 'generoPersona',
@@ -40,107 +44,4 @@ export const columnsRegistrosAnalista = [
         label: 'Municipio',
     },
     
-]
-
-export const dataRegistrosAnalista = [
-    {
-        solicitud: 3,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '9',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    },
-    {
-        solicitud: 1,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '3',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    }, {
-        solicitud: 4,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '25',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    }, {
-        solicitud: 2,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '17',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    },
-    {
-        solicitud: 4,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '5',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    },
-    {
-        solicitud: 1,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '3',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    }, {
-        solicitud: 3,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '18',
-        nombre: 'Lukas rendon',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    }, {
-        solicitud: 2,
-        registro: '00001',
-        radicado: 'EXT 2024 000078',
-        diasHabiles: '35',
-        nombre: 'Camilo Sarmiento',
-        nuip: '1.021.963.741',
-        celular: '350 220 4049',
-        correo: 'lucas.rendon@unp.gov.co',
-        departamento: 'Bogotá D.C.',
-        municipio: 'Bogotá D.C.',
-        
-    },
 ]

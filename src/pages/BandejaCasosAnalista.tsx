@@ -78,10 +78,10 @@ export const BandejaCasosAnalista = () => {
     
     };
 
-    const renderModalContent = (row: Record<string, any>, column: any) => {
+    const renderModalContent = (row: Record<string, any>, column: any, onHide?: any ) => {
         switch (column.key) {
             case "numeroRegistro":
-                return (<ModalRegistroAnalista row={row} update={setUpdate} />);
+                return (<ModalRegistroAnalista row={row} update={setUpdate} onHide={onHide} />);
             case "registro_tablaAsignacionARiesgo":
                 return (<ModalAsignacionARiesgo />);
             default:

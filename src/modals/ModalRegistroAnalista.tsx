@@ -111,12 +111,15 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
   return (
     <>
 
-      <div className="">
+      <div style={{ margin: '0 0 1rem 0' }}>
         <div className="modal_subtitle_container">
           <div className="red-section">1</div>
-          <span className="modal-subtitle" style={{ fontWeight: '500' }}>{numeroRegistro} - {fechaRegistro} - {fechaRecepcion}</span>
+          <span className="modal-subtitle" style={{ fontWeight: '500' }}>Registro #{numeroRegistro}</span>
         </div>
       </div>
+
+      <p><b>Fecha de registro:</b> {fechaRegistro}</p>
+      <p><b>Fecha de recepción:</b> {fechaRecepcion}</p>
 
       <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion} />
       <AnexosSolicitante />
@@ -133,6 +136,8 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
         </FormSelect>
       </FormGroup>
 
+      <br />
+
       <FormGroup>
         <SubtituloForm subtitulo={'Gestión'} icon={FaFolderClosed} />
         <FormSelect value={selectedGestion} onChange={(e) => setSelectedGestion(e.target.value)}>
@@ -145,8 +150,10 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
         </FormSelect>
       </FormGroup>
 
+      <br />
+
+      <SubtituloForm subtitulo={'Observación'} icon={FaListUl} />
       <FormGroup>
-        <SubtituloForm subtitulo={'Observación'} icon={FaListUl} />
         <Form.Control
           as="textarea"
           rows={3}

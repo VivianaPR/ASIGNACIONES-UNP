@@ -31,6 +31,37 @@
   margin: 1.75em !important;
 }
 
+/* Brakepoints para el ancho del modal */
+@media (max-width: 1400px) {
+  .modal-container {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .modal-container {
+    width: 55% !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .modal-container {
+    width: 60% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .modal-container {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    width: 80% !important;
+  }
+}
+
 .modal-container.show {
   transform: translateX(0) !important;
   opacity: 1 !important;

@@ -91,7 +91,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update, onHide }) 
           const result = await response.json();
 
           if (result.status === 'success') {
-            onHide()
+            onHide();
             update(true);
           } else {
             console.error('Failed to update registro state.');

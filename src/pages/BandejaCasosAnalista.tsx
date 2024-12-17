@@ -113,7 +113,7 @@ export const BandejaCasosAnalista = () => {
                     renderAlertContent={renderAlertContent}
                     totalDias={20}
                     subtitle={"Subdirección de Evaluación de Riesgo"}
-                    items={"Asignaciones"}
+                    items={"Asignaciones / Analista"}
                     isShared={true}
                 />
             </div>

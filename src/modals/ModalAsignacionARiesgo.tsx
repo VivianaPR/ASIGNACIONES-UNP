@@ -8,12 +8,18 @@ import swal from 'sweetalert2'
 
 
 export function ModalAsignacionARiesgo(row: any) {
+
+    const registro = row.numeroRegistro;
+    const fechaRegistro = row.fechaSolicitudRegistro;
+    const fechaRecepcion = row.fechaRecepcionRegistro;
+
     const [formState, setFormState] = useState({
         asignacion: "",
         observacion: "",
         devolucion: false,
         observacionDevolucion: ""
     });
+    
     const [errors, setErrors] = useState({
         asignacion: false,
         observacion: false,
@@ -112,6 +118,13 @@ export function ModalAsignacionARiesgo(row: any) {
 
     return (
         <>
+            <div className="">
+                <div className="modal_subtitle_container">
+                    <div className="red-section">1</div>
+                    <span className="modal-subtitle" style={{ fontWeight: '500' }}>{registro} - {fechaRegistro} - {fechaRecepcion}</span>
+                </div>
+            </div>
+
             <SubtituloForm subtitulo={"Analista de Riesgo"} icon={FaUser} />
             <FormGroup style={{ display: "flex", gap: "1rem" }}>
                 <FormSelect

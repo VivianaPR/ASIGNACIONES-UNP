@@ -49,12 +49,6 @@ const DatosBasicos: React.FC<Props> = ({ registro, fechaRegistro, fechaRecepcion
 
     return (
         <>
-            <div className="">
-                <div className="modal_subtitle_container">
-                    <div className="red-section">1</div>
-                    <span className="modal-subtitle" style={{ fontWeight: '500' }}>{registro} - {fechaRegistro} - {fechaRecepcion}</span>
-                </div>
-            </div>
             <div className="item_container">
 
                 <div className="tittle-container-modal">

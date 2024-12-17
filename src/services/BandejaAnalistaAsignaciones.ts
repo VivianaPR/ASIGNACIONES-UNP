@@ -48,4 +48,22 @@ async function fetchBandejaAnalistaAsignaciones() {
     }
 }
 
-export { fetchBandejaAnalistaAsignaciones };
+async function fetchBandejaLiderAsignaciones() {
+    const url = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/liderasignacion/?format=json';
+    try {
+        const response = await fetch(url);
+        const result = await response.json();
+        
+        if (!result.results || !Array.isArray(result.results)) {
+            throw new Error('El resultado no contiene una propiedad "results" que sea un array');
+        }
+
+        const filteredData = result.results.map((item: any) => transformarDatos(item));
+        return filteredData;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+    }
+}
+
+export { fetchBandejaAnalistaAsignaciones, fetchBandejaLiderAsignaciones };

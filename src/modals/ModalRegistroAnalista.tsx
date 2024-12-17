@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUser, FaFolderClosed, FaFileCircleQuestion, FaListUl } from 'react-icons/fa6';
+import { FaFolderClosed, FaFileCircleQuestion, FaListUl } from 'react-icons/fa6';
 import { SubtituloForm } from 'eco-unp/Ui';
 import { Form, FormGroup, FormSelect } from 'react-bootstrap';
 import AnexosSolicitante from '../shared/components/Anexos';
@@ -28,6 +28,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
   const [selectedTipoEstudio, setSelectedTipoEstudio] = React.useState('');
   const [selectedGestion, setSelectedGestion] = React.useState('');
   const [text, setText] = React.useState('');
+
   const numeroRegistro = row.numeroRegistro;
   const fechaRegistro = row.fechaSolicitudRegistro;
   const fechaRecepcion = row.fechaRecepcionRegistro;
@@ -109,6 +110,14 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
 
   return (
     <>
+
+      <div className="">
+        <div className="modal_subtitle_container">
+          <div className="red-section">1</div>
+          <span className="modal-subtitle" style={{ fontWeight: '500' }}>{numeroRegistro} - {fechaRegistro} - {fechaRecepcion}</span>
+        </div>
+      </div>
+
       <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion} />
       <AnexosSolicitante />
 

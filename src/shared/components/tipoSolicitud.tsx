@@ -3,7 +3,7 @@ import { FaBalanceScale, FaExclamationTriangle, FaSync, FaUserShield } from "rea
 import { Button } from 'react-bootstrap';
 
 interface IconTooltipProps {
-    solicitud: number;
+    solicitud: any;
 }
 
 const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
@@ -15,10 +15,10 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
     let variant = '';
     let Icon = null;
 
-    switch (solicitud) {
+    switch (solicitud.solicitud) {
         case 1:
             tooltipText = "Emergencia";
-            style = { backgroundColor: '#1272b7', color: '#ffffff', fontSize: 16};
+            style = { backgroundColor: solicitud.estadoRegistro === 'en_gestion' ? '#1272b7' : '#a1a1a1', color: '#ffffff', fontSize: 16};
             Icon = FaExclamationTriangle;
             break;
         case 2:

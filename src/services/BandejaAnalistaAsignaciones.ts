@@ -1,4 +1,4 @@
-const idUsuario = '28d73cb5-3b48-4e23-bb93-f301fc2d3aa2';
+const idUsuario = '68055698-070a-4839-a507-5ba6f175c593';
 
 function transformarDatos(data: any): any {
     return {

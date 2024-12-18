@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { SubtituloForm } from "eco-unp/Ui";
-import { Form, FormGroup, FormLabel, FormSelect, Card, Button } from "react-bootstrap";
+import { Form, FormGroup, FormLabel, FormSelect, Card, Button, CardBody } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
+import { fetchListadoAnalistas } from "../services/GestionLiderAsignaciones";
 
 interface Props {
     row?: any;
@@ -18,10 +19,12 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
+    const [data, setData] = React.useState([]);
+
     const [text, setText] = React.useState('');
 
     const [formState, setFormState] = useState({
-        asignacion: "",
+        asignacion: "", 
         observacion: "",
         devolucion: false,
         observacionDevolucion: ""
@@ -151,6 +154,17 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
         }
     };
 
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const fetchedData = await fetchListadoAnalistas();
+            setData(fetchedData);
+        }
+
+        fetchData();
+        console.log(data)
+
+    }, []);
+
     return (
         <>
             <div className="">
@@ -169,43 +183,50 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
                     isInvalid={errors.asignacion}
                 >
                     <option value="">Seleccione...</option>
-                    <option value="1">Diego Alejandro Castañeda Herrera</option>
-                    <option value="2">Julian Buitrago</option>
-                    <option value="3">Carlos Pinzon</option>
+                    {data.map((analista: any, index: number) => (
+                        <option key={analista.id_busuario} value={analista.id_busuario}>
+                            {analista.primerNombre + ' ' + analista.segundoNombre + ' ' + analista.primerApellido + ' ' + analista.segundoApellido}
+                        </option>
+                    ))}
                 </FormSelect>
                 <Button className="btn btn-primary" onClick={handleAsignar}>
                     Asignar
                 </Button>
             </FormGroup>
 
-            <SubtituloForm subtitulo={"Información del Analista de Riesgo"} icon={FaUser} />
-            <Card
-                className="w-100 d-flex align-items-center justify-content-center"
-                style={{ height: "20rem" }}
-            >
-                <p style={{ color: "lightgray" }}>
-                    Información general del Analista de Riesgo
-                </p>
-            </Card>
+            {formState.asignacion &&
+                <>
+                    <SubtituloForm subtitulo={"Información del Analista de Riesgo"} icon={FaUser} />
+                    <Card className="w-100 d-flex" style={{ height: "20rem" }} >
+                        <CardBody>
+                        <p><b>Nombres: </b>{formState.asignacion}</p>
+                        <p><b>NUIP: </b>{formState.asignacion}</p>
+                        <p><b>Sexo: </b>{formState.asignacion}</p>
+                        <p><b>Género: </b>{formState.asignacion}</p>
+                        <p><b>Orientación: </b>{formState.asignacion}</p>
+                        <p><b>Perfil: </b>{formState.asignacion}</p>
+                        </CardBody>
+                    </Card>
 
-            <div style={{ textAlign: "left" }}>
-                <FormGroup>
-                    <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        name="observacion"
-                        value={formState.observacion}
-                        onChange={(e) => handleInputChange(e)}
-                        maxLength={200}
-                        placeholder="Justifique la asignación..."
-                        isInvalid={errors.observacion}
-                    />
-                </FormGroup>
-                <Form.Text muted>
-                    {200 - formState.observacion.length} caracteres restantes
-                </Form.Text>
-            </div>
+
+                    <FormGroup>
+                        <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            name="observacion"
+                            value={formState.observacion}
+                            onChange={(e) => handleInputChange(e)}
+                            maxLength={200}
+                            placeholder="Justifique la asignación..."
+                            isInvalid={errors.observacion}
+                        />
+                    </FormGroup>
+                    <Form.Text muted>
+                        {200 - formState.observacion.length} caracteres restantes
+                    </Form.Text>
+                </>
+            }
 
             <DatosBasicos registro={registro} />
             <AnexosSolicitante />

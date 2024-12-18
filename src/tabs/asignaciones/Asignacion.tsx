@@ -12,9 +12,7 @@ export const AsignacionAsignacion: React.FC = () => {
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
             case "numeroRegistro":
-                return (<ModalAsignacionARiesgo row={row} update={setUpdate} />);
-            case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo />);
+                return (<ModalAsignacionARiesgo row={row} update={update} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }
@@ -34,9 +32,9 @@ export const AsignacionAsignacion: React.FC = () => {
         };
     
         fetchData();
+        setUpdate(false);
     
-      }, []);
-    
+      }, [update]);
 
     return (
         <div style={{ paddingTop: 25 }}>

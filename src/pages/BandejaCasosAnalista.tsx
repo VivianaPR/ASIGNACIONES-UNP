@@ -83,7 +83,7 @@ export const BandejaCasosAnalista = () => {
             case "numeroRegistro":
                 return (<ModalRegistroAnalista row={row} update={setUpdate} onHide={onHide} />);
             case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo />);
+                return (<ModalAsignacionARiesgo update={setUpdate} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }

@@ -6,6 +6,10 @@ import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
 import swal from 'sweetalert2'
 
+interface Props {
+    row?: any;
+    update: any;
+}
 
 const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean) => void) => {
 
@@ -14,12 +18,15 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
+    const [text, setText] = React.useState('');
+
     const [formState, setFormState] = useState({
         asignacion: "",
         observacion: "",
         devolucion: false,
         observacionDevolucion: ""
     });
+
 
     const [errors, setErrors] = useState({
         asignacion: false,
@@ -203,9 +210,7 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
                 </Form.Text>
             </div>
 
-
-            <DatosBasicos />
-
+            <DatosBasicos registro={registro} />
             <AnexosSolicitante />
 
             <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyItems: "center" }}>
@@ -229,22 +234,21 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
                             as="textarea"
                             rows={3}
                             name="observacionDevolucion"
-                            value={formState.observacionDevolucion}
-                            onChange={(e) => handleInputChange(e)}
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
                             maxLength={200}
                             isInvalid={errors.observacionDevolucion}
                             required
                         />
                     </FormGroup>
                     <Form.Text muted>
-                        {200 - formState.observacionDevolucion.length} caracteres restantes
+                        {200 - text.length} caracteres restantes
                     </Form.Text>
                 </div>
             )}
 
             {formState.devolucion && (
                 <div style={{ textAlign: "right" }}>
-
                     <Button
                         variant="danger"
                         className="mt-3"

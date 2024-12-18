@@ -9,11 +9,9 @@ import { fetchFactorDiferencialPersona } from "../../services/FactorDiferencialP
 
 interface Props {
     registro?: string;
-    fechaRegistro?: string;
-    fechaRecepcion?: string;
 }
 
-const DatosBasicos: React.FC<Props> = ({ registro, fechaRegistro, fechaRecepcion }) => {
+const DatosBasicos: React.FC<Props> = ({ registro }) => {
 
     const [data, setData] = useState<any>({});
     const [showDatosPersonales, setShowDatosPersonales] = useState(false);

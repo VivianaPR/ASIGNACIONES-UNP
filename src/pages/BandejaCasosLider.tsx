@@ -15,7 +15,7 @@ const BandejaCasosLider = () => {
             case "numeroRegistro":
                 return (<ModalRegistroLider row={row} />);
             case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo />);
+                return (<ModalAsignacionARiesgo update={undefined} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }

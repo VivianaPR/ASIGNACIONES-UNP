@@ -106,7 +106,7 @@ export const RegistroAsignacion: React.FC = () => {
             case "numeroRegistro":
                 return (<ModalRegistroLider row={row} update={setUpdate} />);
             case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo />);
+                return (<ModalAsignacionARiesgo update={undefined} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }

@@ -11,24 +11,23 @@ import { decodeUserToken } from "./config/UserToken";
 
 export const BandejaCasosAnalista = () => {
 
+    const token = localStorage.getItem("user_token");
     const [data, setData] = React.useState<any[]>([]);
     const [update, setUpdate] = React.useState(false);
+
+    let idUsrStart: string | null = null;
+    
+    if (token) {
+        idUsrStart = decodeUserToken(token);
+    } else {
+        console.error("No token found in localStorage");
+    }
 
     const renderAlertContent = (row: Record<string, any>, column: any): void | null => {
         const registro = row.numeroRegistro;
         const estado = '17'; // Para casos tomados por el Analista de Asignaciones
         const idUsrEnd = row.idUsuario;
-    
-        const token = localStorage.getItem("user_token");
-        let idUsrStart: string | null = null;
-    
-        if (token) {
-            idUsrStart = decodeUserToken(token);
-        } else {
-            console.error("No token found in localStorage");
-        }
-  
-        console.log(row.estadoRegistro)
+
         if (row.estadoRegistro !== 'en_gestion') {
             Swal.fire({
                 title: "<small>¿Está seguro de tomar este registro?</small>",
@@ -98,11 +97,12 @@ export const BandejaCasosAnalista = () => {
     };
 
     const fetchData = async () => {
-        const fetchedData = await fetchBandejaAnalistaAsignaciones();
+        const fetchedData = await fetchBandejaAnalistaAsignaciones(idUsrStart!);
         const combinedData = [
             ...fetchedData.enGestion.map((item: any) => ({ ...item, estadoRegistro: 'en_gestion' })),
             ...fetchedData.porGestionar.map((item: any) => ({ ...item, estadoRegistro: 'por_gestionar' }))
         ];
+        console.log(fetchedData, combinedData)
         setData(combinedData);
     };
 

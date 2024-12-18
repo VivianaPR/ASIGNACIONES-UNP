@@ -1,4 +1,4 @@
-const idUsuario = '68055698-070a-4839-a507-5ba6f175c593';
+
 
 function transformarDatos(data: any): any {
     return {
@@ -28,12 +28,14 @@ function transformarDatos(data: any): any {
     };
 }
 
-async function fetchBandejaAnalistaAsignaciones() {
+async function fetchBandejaAnalistaAsignaciones(idUsuario: string) {
     const url = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/analistaasignacion/?format=json&usuario=' + idUsuario;
     try {
 
         const response = await fetch(url);
         const result = await response.json();
+
+        console.log(result, url)
 
         if (result.en_gestion && result.por_gestionar) {
             const enGestion = result.en_gestion.map((item: any) => transformarDatos(item));

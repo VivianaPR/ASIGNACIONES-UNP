@@ -186,16 +186,17 @@ const BootstrapTable: React.FC<TableProps> = ({
                   </tr>
                   {isShared && row.estadoRegistro === "en_gestion" && !filteredData.some(r => r.estadoRegistro === "en_gestion" && filteredData.indexOf(r) > rowIndex) && (
                     <tr>
-                      <td colSpan={columns.length} className="text-center">
+                      <td colSpan={columns.length} className="text-center" style={{ padding: '0 2rem 0 2rem' }}>
                         <div style={{
                           minHeight: 20,
                           display: 'flex',
+                          flexDirection: 'row',
                           justifyContent: 'center',
                           alignItems: 'center',
                           fontWeight: '600',
-                          color: '#303D50',
+                          color: '#303D50'
                         }}>
-                          <FaGripLines />
+                          <FaGripLines style={{ color: '#a1a1a1' }} />
                         </div>
                       </td>
                     </tr>

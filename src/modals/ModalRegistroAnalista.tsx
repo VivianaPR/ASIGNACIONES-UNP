@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFolderClosed, FaFileCircleQuestion, FaListUl } from 'react-icons/fa6';
+import { FaFolderClosed, FaFileCircleQuestion, FaListUl, FaKey } from 'react-icons/fa6';
 import { SubtituloForm } from 'eco-unp/Ui';
 import { Form, FormGroup, FormSelect } from 'react-bootstrap';
 import AnexosSolicitante from '../shared/components/Anexos';
@@ -9,6 +9,7 @@ import { fetchGestionSolicitud, fetchGestionTipoEstudio } from '../services/Gest
 interface Props {
   row?: any;
   update: any;
+  onHide: any;
 }
 
 interface TipoEstudio {
@@ -21,7 +22,7 @@ interface GestionSolicitud {
   nombre: string;
 }
 
-export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
+export const ModalRegistroAnalista: React.FC<Props> = ({ row, update, onHide }) => {
 
   const [tiposEstudio, setTiposEstudio] = React.useState<TipoEstudio[]>([]);
   const [gestionSolicitud, setGestionSolicitud] = React.useState<GestionSolicitud[]>([]);
@@ -90,6 +91,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
           const result = await response.json();
 
           if (result.status === 'success') {
+            onHide();
             update(true);
           } else {
             console.error('Failed to update registro state.');
@@ -111,10 +113,10 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
   return (
     <>
 
-      <div className="">
+      <div style={{ margin: '0 0 1rem 0' }}>
         <div className="modal_subtitle_container">
           <div className="red-section">1</div>
-          <span className="modal-subtitle" style={{ fontWeight: '500' }}>{numeroRegistro} - {fechaRegistro} - {fechaRecepcion}</span>
+          <span className="modal-subtitle" style={{ fontWeight: '500' }}>{numeroRegistro}</span> {/* <FaKey /> */}
         </div>
       </div>
 
@@ -133,6 +135,8 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
         </FormSelect>
       </FormGroup>
 
+      <br />
+
       <FormGroup>
         <SubtituloForm subtitulo={'Gestión'} icon={FaFolderClosed} />
         <FormSelect value={selectedGestion} onChange={(e) => setSelectedGestion(e.target.value)}>
@@ -145,8 +149,10 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
         </FormSelect>
       </FormGroup>
 
+      <br />
+
+      <SubtituloForm subtitulo={'Observación'} icon={FaListUl} />
       <FormGroup>
-        <SubtituloForm subtitulo={'Observación'} icon={FaListUl} />
         <Form.Control
           as="textarea"
           rows={3}

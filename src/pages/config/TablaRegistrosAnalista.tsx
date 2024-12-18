@@ -4,7 +4,7 @@ export const columnsRegistrosAnalista = [
     {
         key: 'solicitud',
         label: 'Solicitud',
-        renderComponent: (rowData: any) => <IconTooltip solicitud={rowData.solicitud} />,
+        renderComponent: (rowData: any) => <IconTooltip solicitud={rowData} />,
     },
     {
         key: 'numeroRegistro',

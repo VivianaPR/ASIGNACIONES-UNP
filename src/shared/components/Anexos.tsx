@@ -49,7 +49,7 @@ const getIconByType = (tipo: string) => {
 const AnexosSolicitante: React.FC<any> = ({row}) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   return (
-    <>
+    <div style={{ margin: '2rem 0 0 0' }}>
       <SubtituloForm subtitulo={"Anexos"} icon={GrAttachment} />
 
       <div className="modal_proccess_container">
@@ -71,7 +71,7 @@ const AnexosSolicitante: React.FC<any> = ({row}) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

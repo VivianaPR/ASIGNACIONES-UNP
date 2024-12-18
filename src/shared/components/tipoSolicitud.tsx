@@ -18,7 +18,7 @@ const IconTooltip: React.FC<IconTooltipProps> = ({ solicitud }) => {
     switch (solicitud.solicitud) {
         case 1:
             tooltipText = "Emergencia";
-            style = { backgroundColor: solicitud.estadoRegistro === 'en_gestion' ? '#1272b7' : '#a1a1a1', color: '#ffffff', fontSize: 16};
+            style = { backgroundColor: solicitud.estadoRegistro === 'por_gestionar' ? '#a1a1a1' : '#1272b7', color: '#ffffff', fontSize: 16};
             Icon = FaExclamationTriangle;
             break;
         case 2:

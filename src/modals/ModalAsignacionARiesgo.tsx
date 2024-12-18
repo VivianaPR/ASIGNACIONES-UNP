@@ -124,6 +124,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
     };
 
     const devolver = async () => {
+        
         const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
         const obs = formState.observacionDevolucion;
         const registro = row.numeroRegistro;

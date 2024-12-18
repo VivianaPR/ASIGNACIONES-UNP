@@ -30,13 +30,13 @@ export const BandejaCasosAnalista = () => {
 
         if (row.estadoRegistro !== 'en_gestion') {
             Swal.fire({
-                title: "<small>¿Está seguro de tomar este registro?</small>",
+                title: "<small>¿Desea tomar este registro?</small>",
                 text: "Tenga presente que, una vez lo haga, deberá darle trámite en los tiempos definidos en el procedimiento.",
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: "#3488C9",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Sí, tomar registro",
+                confirmButtonText: "Sí, tomar el registro",
                 cancelButtonText: "Cancelar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -89,8 +89,6 @@ export const BandejaCasosAnalista = () => {
         switch (column.key) {
             case "numeroRegistro":
                 return (<ModalRegistroAnalista row={row} update={setUpdate} onHide={onHide} />);
-            case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo update={setUpdate} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }

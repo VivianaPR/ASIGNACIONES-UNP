@@ -7,9 +7,10 @@ import DatosBasicos from "../shared/components/DatosBasicos";
 import swal from 'sweetalert2'
 
 
-export function ModalAsignacionARiesgo(row: any) {
+const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean) => void) => {
 
     const registro = row.numeroRegistro;
+    alert(registro)
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
@@ -19,7 +20,7 @@ export function ModalAsignacionARiesgo(row: any) {
         devolucion: false,
         observacionDevolucion: ""
     });
-    
+
     const [errors, setErrors] = useState({
         asignacion: false,
         observacion: false,
@@ -99,11 +100,7 @@ export function ModalAsignacionARiesgo(row: any) {
             cancelButtonColor: '#D13C47',
         }).then((result) => {
             if (result.isConfirmed) {
-                const dataToSend = {
-                    devolucion: formState.devolucion,
-                    observacionDevolucion: formState.observacionDevolucion
-                };
-                console.log("Datos enviados al devolver:", dataToSend);
+                devolver();
                 swal.fire({
                     title: 'Devolución Exitosa',
                     icon: 'success',
@@ -114,6 +111,40 @@ export function ModalAsignacionARiesgo(row: any) {
                 console.log('Devolución cancelada');
             }
         });
+    };
+
+    const devolver = async () => {
+
+        const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
+        const obs = formState.observacionDevolucion;
+        const registro = row.numeroRegistro;
+
+        alert(registro)
+
+        try {
+
+            const response = await fetch(urlTrazabilidad, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    registro: registro,
+                    estado: '11', // Retorna a la bandeja de Analista de asignaciones
+                    obs: obs
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                update(true);
+            } else {
+                console.error('Failed to update registro state.');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
     return (
@@ -226,3 +257,5 @@ export function ModalAsignacionARiesgo(row: any) {
         </>
     );
 }
+
+export {ModalAsignacionARiesgo};

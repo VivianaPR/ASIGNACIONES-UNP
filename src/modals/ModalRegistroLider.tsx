@@ -1,9 +1,7 @@
 import React from "react";
 import { FaUser, FaAlignJustify } from "react-icons/fa6";
 import { SubtituloForm } from "eco-unp/Ui";
-import { Form, FormGroup, FormLabel, FormSelect } from "react-bootstrap";
-import { IconBaseProps } from "react-icons";
-import { relative } from "path";
+import { FormGroup, FormSelect } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
 import { Card } from "react-bootstrap";
@@ -14,6 +12,7 @@ interface Props {
 }
 
 export const ModalRegistroLider: React.FC<Props> = ({ row, update }) => {
+  
   const send = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/sistema/trazabilidad/registro', {

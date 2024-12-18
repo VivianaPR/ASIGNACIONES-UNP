@@ -54,7 +54,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update, onHide }) 
 
   const send = async () => {
 
-    const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro';
+    const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
     const urlTipoEstudio = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/actualizartipoestudio/';
 
     try {

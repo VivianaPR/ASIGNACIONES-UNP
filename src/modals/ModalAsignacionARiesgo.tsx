@@ -12,8 +12,10 @@ interface Props {
     update: any;
 }
 
-const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
+const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean) => void) => {
+
     const registro = row.numeroRegistro;
+    alert(registro)
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
@@ -27,6 +29,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
         devolucion: false,
         observacionDevolucion: ""
     });
+
 
     const [errors, setErrors] = useState({
         asignacion: false,
@@ -107,11 +110,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
             cancelButtonColor: '#D13C47',
         }).then((result) => {
             if (result.isConfirmed) {
-                const dataToSend = {
-                    devolucion: formState.devolucion,
-                    observacionDevolucion: formState.observacionDevolucion
-                };
-                console.log("Datos enviados al devolver:", dataToSend);
+                devolver();
                 swal.fire({
                     title: 'Devolución Exitosa',
                     icon: 'success',
@@ -122,22 +121,27 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
                 console.log('Devolución cancelada');
             }
         });
-
     };
 
-    const devolverCaso = async () => {
+    const devolver = async () => {
+
         const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
+        const obs = formState.observacionDevolucion;
+        const registro = row.numeroRegistro;
+
+        alert(registro)
 
         try {
+
             const response = await fetch(urlTrazabilidad, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    registro: row.numeroRegistro,
-                    estado: 11,
-                    obs: text,
+                    registro: registro,
+                    estado: '11', // Retorna a la bandeja de Analista de asignaciones
+                    obs: obs
                 }),
             });
 
@@ -279,4 +283,4 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
     );
 }
 
-export { ModalAsignacionARiesgo };
+export {ModalAsignacionARiesgo};

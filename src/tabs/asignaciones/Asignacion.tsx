@@ -4,7 +4,6 @@ import { ModalAsignacionARiesgo } from "../../modals/ModalAsignacionARiesgo";
 import { columnsRegistrosAnalista } from "../../pages/config/TablaRegistrosAnalista";
 import { fetchBandejaLiderAsignaciones } from "../../services/BandejaAnalistaAsignaciones";
 
-
 export const AsignacionAsignacion: React.FC = () => {
 
     const [data, setData] = React.useState<any[]>([]);

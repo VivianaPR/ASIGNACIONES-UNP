@@ -7,12 +7,13 @@ import { ModalRegistroLider } from "../modals/ModalRegistroLider";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
 
-export function BandejaCasosLider() {
+const BandejaCasosLider = () => {
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
+        
         switch (column.key) {
-            case "registro_tablaRegistrosLider":
-                return (<ModalRegistroLider row={row}/>);
+            case "numeroRegistro":
+                return (<ModalRegistroLider row={row} />);
             case "registro_tablaAsignacionARiesgo":
                 return (<ModalAsignacionARiesgo update={undefined} />);
             default:
@@ -26,13 +27,15 @@ export function BandejaCasosLider() {
                 <AsignacionAsignacion />
             </TabVentana>
 
-            <TabVentana eventKey={"tab2"} title={"Histórico"}>
+            {/* <TabVentana eventKey={"tab2"} title={"Histórico"}>
                     <BootstrapTable
                         columns={columnsHistoricoLider}
                         data={dataHistoricoLider}
                         renderModalContent={renderModalContent}
                         totalDias={30} subtitle={"Subdirección de Evaluación de Riesgo"} items={"CTAR"}                    ></BootstrapTable>
-            </TabVentana>
+            </TabVentana> */}
         </VentanaUsuario>
     )
 }
+
+export { BandejaCasosLider }

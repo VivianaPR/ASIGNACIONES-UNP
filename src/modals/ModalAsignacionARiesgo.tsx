@@ -8,14 +8,15 @@ import swal from 'sweetalert2'
 
 interface Props {
     row?: any;
-  }
+    update: any;
+}
 
-
-const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
-
+const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update }) => {
     const registro = row.numeroRegistro;
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
+
+    const [text, setText] = React.useState('');
 
     const [formState, setFormState] = useState({
         asignacion: "",
@@ -118,6 +119,35 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
                 console.log('Devolución cancelada');
             }
         });
+
+    };
+
+    const devolverCaso = async () => {
+        const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
+
+        try {
+            const response = await fetch(urlTrazabilidad, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    registro: row.numeroRegistro,
+                    estado: 11,
+                    obs: text,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                update(true);
+            } else {
+                console.error('Failed to update registro state.');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
     return (
@@ -176,9 +206,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
                 </Form.Text>
             </div>
 
-
             <DatosBasicos registro={registro} />
-
             <AnexosSolicitante />
 
             <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyItems: "center" }}>
@@ -202,22 +230,21 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
                             as="textarea"
                             rows={3}
                             name="observacionDevolucion"
-                            value={formState.observacionDevolucion}
-                            onChange={(e) => handleInputChange(e)}
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
                             maxLength={200}
                             isInvalid={errors.observacionDevolucion}
                             required
                         />
                     </FormGroup>
                     <Form.Text muted>
-                        {200 - formState.observacionDevolucion.length} caracteres restantes
+                        {200 - text.length} caracteres restantes
                     </Form.Text>
                 </div>
             )}
 
             {formState.devolucion && (
                 <div style={{ textAlign: "right" }}>
-
                     <Button
                         variant="danger"
                         className="mt-3"
@@ -231,4 +258,4 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
     );
 }
 
-export {ModalAsignacionARiesgo};
+export { ModalAsignacionARiesgo };

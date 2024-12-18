@@ -8,11 +8,12 @@ import { fetchBandejaLiderAsignaciones } from "../../services/BandejaAnalistaAsi
 export const AsignacionAsignacion: React.FC = () => {
 
     const [data, setData] = React.useState<any[]>([]);
+    const [update, setUpdate] = React.useState(false);
 
     const renderModalContent = (row: Record<string, any>, column: any) => {
         switch (column.key) {
             case "numeroRegistro":
-                return (<ModalAsignacionARiesgo row={row} />);
+                return (<ModalAsignacionARiesgo row={row} update={update} />);
             default:
                 return <p>No hay información adicional disponible.</p>;
         }
@@ -32,9 +33,9 @@ export const AsignacionAsignacion: React.FC = () => {
         };
     
         fetchData();
+        setUpdate(false);
     
-      }, []);
-    
+      }, [update]);
 
     return (
         <div style={{ paddingTop: 25 }}>

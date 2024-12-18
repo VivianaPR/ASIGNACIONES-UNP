@@ -6,8 +6,12 @@ import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
 import swal from 'sweetalert2'
 
+interface Props {
+    row?: any;
+  }
 
-export function ModalAsignacionARiesgo(row: any) {
+
+const ModalAsignacionARiesgo: React.FC<Props> = ({ row }) => {
 
     const registro = row.numeroRegistro;
     const fechaRegistro = row.fechaSolicitudRegistro;
@@ -19,7 +23,7 @@ export function ModalAsignacionARiesgo(row: any) {
         devolucion: false,
         observacionDevolucion: ""
     });
-    
+
     const [errors, setErrors] = useState({
         asignacion: false,
         observacion: false,
@@ -173,7 +177,7 @@ export function ModalAsignacionARiesgo(row: any) {
             </div>
 
 
-            <DatosBasicos />
+            <DatosBasicos registro={registro} />
 
             <AnexosSolicitante />
 
@@ -226,3 +230,5 @@ export function ModalAsignacionARiesgo(row: any) {
         </>
     );
 }
+
+export {ModalAsignacionARiesgo};

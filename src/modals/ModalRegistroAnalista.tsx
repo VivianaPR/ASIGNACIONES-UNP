@@ -118,7 +118,7 @@ export const ModalRegistroAnalista: React.FC<Props> = ({ row, update }) => {
         </div>
       </div>
 
-      <DatosBasicos registro={numeroRegistro} fechaRegistro={fechaRegistro} fechaRecepcion={fechaRecepcion} />
+      <DatosBasicos registro={numeroRegistro} />
       <AnexosSolicitante />
 
       <SubtituloForm subtitulo={'Tipo de estudio'} icon={FaFileCircleQuestion} />

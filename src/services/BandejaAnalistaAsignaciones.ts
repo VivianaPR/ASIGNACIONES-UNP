@@ -49,7 +49,9 @@ async function fetchBandejaAnalistaAsignaciones() {
 }
 
 async function fetchBandejaLiderAsignaciones() {
+
     const url = process.env.REACT_APP_API_EI_ENDPOINT + 'registro/liderasignacion/?format=json';
+    
     try {
         const response = await fetch(url);
         const result = await response.json();

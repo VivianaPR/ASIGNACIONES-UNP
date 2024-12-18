@@ -4,17 +4,17 @@ import { SubtituloForm } from "eco-unp/Ui";
 import { Form, FormGroup, FormLabel, FormSelect, Card, Button } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
 import DatosBasicos from "../shared/components/DatosBasicos";
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 interface Props {
     row?: any;
     update: any;
+    onHide?: any;
 }
 
-const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean) => void) => {
+const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
 
     const registro = row.numeroRegistro;
-    alert(registro)
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
@@ -26,7 +26,6 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
         devolucion: false,
         observacionDevolucion: ""
     });
-
 
     const [errors, setErrors] = useState({
         asignacion: false,
@@ -58,7 +57,7 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
             return;
         }
 
-        swal.fire({
+        Swal.fire({
             title: '¿Está seguro de asignar el caso?',
             icon: 'warning',
             showCancelButton: true,
@@ -73,12 +72,12 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
                     observacion: formState.observacion
                 };
                 console.log("Datos enviados al asignar:", dataToSend);
-                swal.fire({
+                Swal.fire({
                     title: 'Asignación Exitosa',
                     icon: 'success',
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#2CAE50',
-                })
+                });
             } else {
                 console.log('Asignación cancelada');
             }
@@ -86,10 +85,11 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
     };
 
     const handleDevolver = () => {
+
         const newErrors = {
             asignacion: false,
             observacion: false,
-            observacionDevolucion: formState.observacionDevolucion.trim().length < 100,
+            observacionDevolucion: formState.observacionDevolucion.trim().length < 5,
         };
         setErrors(newErrors);
 
@@ -97,7 +97,7 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
             return;
         }
 
-        swal.fire({
+        Swal.fire({
             title: '¿Está seguro que desea devolver el caso?',
             icon: 'warning',
             showCancelButton: true,
@@ -108,12 +108,12 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
         }).then((result) => {
             if (result.isConfirmed) {
                 devolver();
-                swal.fire({
+                Swal.fire({
                     title: 'Devolución Exitosa',
                     icon: 'success',
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#2CAE50',
-                })
+                });
             } else {
                 console.log('Devolución cancelada');
             }
@@ -121,15 +121,11 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
     };
 
     const devolver = async () => {
-
         const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
         const obs = formState.observacionDevolucion;
         const registro = row.numeroRegistro;
 
-        alert(registro)
-
         try {
-
             const response = await fetch(urlTrazabilidad, {
                 method: 'POST',
                 headers: {
@@ -145,6 +141,7 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
             const result = await response.json();
 
             if (result.status === 'success') {
+                onHide();
                 update(true);
             } else {
                 console.error('Failed to update registro state.');
@@ -234,15 +231,15 @@ const ModalAsignacionARiesgo = (row: Record<string, any>, update: (arg0: boolean
                             as="textarea"
                             rows={3}
                             name="observacionDevolucion"
-                            value={text}
-                            onChange={(e) => setText(e.target.value)}
+                            value={formState.observacionDevolucion}
+                            onChange={(e) => handleInputChange(e)}
                             maxLength={200}
                             isInvalid={errors.observacionDevolucion}
                             required
                         />
                     </FormGroup>
                     <Form.Text muted>
-                        {200 - text.length} caracteres restantes
+                        {200 - formState.observacionDevolucion.length} caracteres restantes
                     </Form.Text>
                 </div>
             )}

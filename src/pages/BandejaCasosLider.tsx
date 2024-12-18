@@ -9,17 +9,17 @@ import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
 const BandejaCasosLider = () => {
 
-    const renderModalContent = (row: Record<string, any>, column: any) => {
+    // const renderModalContent = (row: Record<string, any>, column: any, onHide?: any) => {
         
-        switch (column.key) {
-            case "numeroRegistro":
-                return (<ModalRegistroLider row={row} />);
-            case "registro_tablaAsignacionARiesgo":
-                return (<ModalAsignacionARiesgo update={undefined} />);
-            default:
-                return <p>No hay información adicional disponible.</p>;
-        }
-    };
+    //     switch (column.key) {
+    //         case "numeroRegistro":
+    //             return (<ModalRegistroLider row={row} />);
+    //         case "registro_tablaAsignacionARiesgo":
+    //             return (<ModalAsignacionARiesgo update={undefined} onHide={onHide} />);
+    //         default:
+    //             return <p>No hay información adicional disponible.</p>;
+    //     }
+    // };
 
     return (
         <VentanaUsuario>

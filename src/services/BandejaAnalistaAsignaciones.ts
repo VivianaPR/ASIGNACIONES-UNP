@@ -4,6 +4,7 @@ function transformarDatos(data: any): any {
     return {
         solicitud: data.registro.idTipoSolicitud,
         idUsuario: data.registro.usuario,
+        estadoRegistro: data.registro.estadoRegistro,
         numeroRegistro: data.registro.numeroRegistro,
         fechaSolicitudRegistro: data.registro.fechaSolicitud,
         fechaRecepcionRegistro: data.registro.fechaIngreso ? data.registro.fechaIngreso.split(' ')[0] : 'No registra',

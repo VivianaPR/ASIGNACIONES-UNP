@@ -6,8 +6,8 @@ import { columnsRegistrosAnalista } from "./config/TablaRegistrosAnalista";
 import { fetchBandejaAnalistaAsignaciones } from "../services/BandejaAnalistaAsignaciones";
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
+import { decodeUserToken } from "./config/UserToken";
 
-const userId = "28d73cb5-3b48-4e23-bb93-f301fc2d3aa2";
 
 export const BandejaCasosAnalista = () => {
 
@@ -15,13 +15,21 @@ export const BandejaCasosAnalista = () => {
     const [update, setUpdate] = React.useState(false);
 
     const renderAlertContent = (row: Record<string, any>, column: any): void | null => {
-
         const registro = row.numeroRegistro;
         const estado = '17'; // Para casos tomados por el Analista de Asignaciones
         const idUsrEnd = row.idUsuario;
-        const idUsrStart = userId;
     
-        if (row.idUsuario !== userId) {
+        const token = localStorage.getItem("user_token");
+        let idUsrStart: string | null = null;
+    
+        if (token) {
+            idUsrStart = decodeUserToken(token);
+        } else {
+            console.error("No token found in localStorage");
+        }
+  
+        console.log(row.estadoRegistro)
+        if (row.estadoRegistro !== 'en_gestion') {
             Swal.fire({
                 title: "<small>¿Está seguro de tomar este registro?</small>",
                 text: "Tenga presente que, una vez lo haga, deberá darle trámite en los tiempos definidos en el procedimiento.",
@@ -33,7 +41,7 @@ export const BandejaCasosAnalista = () => {
                 cancelButtonText: "Cancelar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await getRegistro(registro, estado, idUsrEnd, idUsrStart);
+                    await getRegistro(registro, estado, idUsrEnd, idUsrStart!);
                     await fetchData();
                     setUpdate(false);
                 }
@@ -45,17 +53,17 @@ export const BandejaCasosAnalista = () => {
 
     const getRegistro = async (registro: string, estado: string, idUsrEnd: string, idUsrStart: string) => {
 
-        const url = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro'; 
-    
+        const url = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro';
+
         const data = {
             registro: registro,
             estado: estado,
             idUsrEnd: idUsrEnd,
             idUsrStart: idUsrStart
         };
-    
+
         try {
-    
+
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -64,21 +72,21 @@ export const BandejaCasosAnalista = () => {
                 },
                 body: JSON.stringify(data)
             });
-    
+
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
             }
-    
+
             const result = await response.json();
             console.log('Respuesta del backend:', result);
-    
+
         } catch (error) {
             console.error('Error:', error);
         }
-    
+
     };
 
-    const renderModalContent = (row: Record<string, any>, column: any, onHide?: any ) => {
+    const renderModalContent = (row: Record<string, any>, column: any, onHide?: any) => {
         switch (column.key) {
             case "numeroRegistro":
                 return (<ModalRegistroAnalista row={row} update={setUpdate} onHide={onHide} />);

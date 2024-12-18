@@ -7,7 +7,7 @@ import { fetchBandejaAnalistaAsignaciones } from "../services/BandejaAnalistaAsi
 import { ModalRegistroAnalista } from "../modals/ModalRegistroAnalista";
 import { ModalAsignacionARiesgo } from "../modals/ModalAsignacionARiesgo";
 
-const userId = "28d73cb5-3b48-4e23-bb93-f301fc2d3aa2";
+const userId = "68055698-070a-4839-a507-5ba6f175c593";
 
 export const BandejaCasosAnalista = () => {
 

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FaUser } from "react-icons/fa6";
+import React, { useState } from "react";
+import { FaClipboardUser, FaNoteSticky } from "react-icons/fa6";
+import { IoArrowBackCircle } from "react-icons/io5";
 import { SubtituloForm } from "eco-unp/Ui";
 import { Form, FormGroup, FormLabel, FormSelect, Card, Button, CardBody } from "react-bootstrap";
 import AnexosSolicitante from "../shared/components/Anexos";
@@ -13,18 +14,25 @@ interface Props {
     onHide?: any;
 }
 
+interface Analista {
+    id_busuario: string;
+    primerNombre: string;
+    segundoNombre: string;
+    primerApellido: string;
+    segundoApellido: string;
+}
+
 const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
 
     const registro = row.numeroRegistro;
     const fechaRegistro = row.fechaSolicitudRegistro;
     const fechaRecepcion = row.fechaRecepcionRegistro;
 
-    const [data, setData] = React.useState([]);
-
-    const [text, setText] = React.useState('');
+    const [showDetails, setShowDetails] = useState(false);
+    const [data, setData] = React.useState<Analista[]>([]);
 
     const [formState, setFormState] = useState({
-        asignacion: "", 
+        asignacion: "",
         observacion: "",
         devolucion: false,
         observacionDevolucion: ""
@@ -49,9 +57,10 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
     };
 
     const handleAsignar = () => {
+
         const newErrors = {
             asignacion: !formState.asignacion,
-            observacion: formState.asignacion !== "1" && (!formState.observacion.trim() || formState.observacion.trim().length < 100),
+            observacion: data[0].id_busuario !== formState.asignacion && (!formState.observacion.trim() || formState.observacion.trim().length < 100),
             observacionDevolucion: false
         };
         setErrors(newErrors);
@@ -70,11 +79,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
             cancelButtonColor: '#D13C47',
         }).then((result) => {
             if (result.isConfirmed) {
-                const dataToSend = {
-                    asignacion: formState.asignacion,
-                    observacion: formState.observacion
-                };
-                console.log("Datos enviados al asignar:", dataToSend);
+                asignar();
                 Swal.fire({
                     title: 'Asignación Exitosa',
                     icon: 'success',
@@ -87,12 +92,44 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
         });
     };
 
+    const asignar = async () => {
+
+        const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registro';
+
+        try {
+            const response = await fetch(urlTrazabilidad, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    registro: row.numeroRegistro,
+                    estado: '20', // Estado para indicar que está en manos de un analista de calidad.
+                    idUsrStart: formState.asignacion,
+                    obs: formState.observacion,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                onHide();
+                update(true);
+            } else {
+                console.error('Failed to update registro state.');
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        
+    }
+
     const handleDevolver = () => {
 
         const newErrors = {
             asignacion: false,
             observacion: false,
-            observacionDevolucion: formState.observacionDevolucion.trim().length < 5,
+            observacionDevolucion: formState.observacionDevolucion.trim().length < 50,
         };
         setErrors(newErrors);
 
@@ -124,7 +161,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
     };
 
     const devolver = async () => {
-        
+
         const urlTrazabilidad = process.env.REACT_APP_API_EI_ENDPOINT + 'sistema/trazabilidad/registroremitir';
         const obs = formState.observacionDevolucion;
         const registro = row.numeroRegistro;
@@ -162,20 +199,23 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
         }
 
         fetchData();
-        console.log(data)
 
     }, []);
 
+    React.useEffect(() => {
+        setShowDetails(!!formState.asignacion);
+    }, [formState.asignacion]);
+
     return (
         <>
-            <div className="">
+            <div className="mb-4">
                 <div className="modal_subtitle_container">
                     <div className="red-section">1</div>
                     <span className="modal-subtitle" style={{ fontWeight: '500' }}>{registro} - {fechaRegistro} - {fechaRecepcion}</span>
                 </div>
             </div>
 
-            <SubtituloForm subtitulo={"Analista de Riesgo"} icon={FaUser} />
+            <SubtituloForm subtitulo={"Analista de Riesgo"} icon={FaClipboardUser} />
             <FormGroup style={{ display: "flex", gap: "1rem" }}>
                 <FormSelect
                     name="asignacion"
@@ -184,48 +224,49 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
                     isInvalid={errors.asignacion}
                 >
                     <option value="">Seleccione...</option>
-                    {data.map((analista: any, index: number) => (
+                    {data.map((analista: Analista) => (
                         <option key={analista.id_busuario} value={analista.id_busuario}>
-                            {analista.primerNombre + ' ' + analista.segundoNombre + ' ' + analista.primerApellido + ' ' + analista.segundoApellido}
+                            {`${analista.primerNombre} ${analista.segundoNombre} ${analista.primerApellido} ${analista.segundoApellido}`}
                         </option>
                     ))}
                 </FormSelect>
-                <Button className="btn btn-primary" onClick={handleAsignar}>
+                <Button className="btn btn-primary" onClick={handleAsignar} style={{ backgroundColor: '#1272B7', border: 'solid 1px #1272B7' }}>
                     Asignar
                 </Button>
             </FormGroup>
 
             {formState.asignacion &&
                 <>
-                    <SubtituloForm subtitulo={"Información del Analista de Riesgo"} icon={FaUser} />
-                    <Card className="w-100 d-flex" style={{ height: "20rem" }} >
-                        <CardBody>
-                        <p><b>Nombres: </b>{formState.asignacion}</p>
-                        <p><b>NUIP: </b>{formState.asignacion}</p>
-                        <p><b>Sexo: </b>{formState.asignacion}</p>
-                        <p><b>Género: </b>{formState.asignacion}</p>
-                        <p><b>Orientación: </b>{formState.asignacion}</p>
-                        <p><b>Perfil: </b>{formState.asignacion}</p>
-                        </CardBody>
-                    </Card>
+                    <div className={`slide-up-down ${showDetails ? 'show' : ''}`}>
+                        <Card className="w-100 d-flex" style={{ height: "20rem", marginTop: 10 }} >
+                            <CardBody style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <p style={{ color: "darkgray" }}>Aquí aparecerá la información del Analista de riesgo seleccionado</p>
+                            </CardBody>
+                        </Card>
+                    </div>
 
 
-                    <FormGroup>
-                        <SubtituloForm subtitulo={"Observación"} icon={FaUser} />
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            name="observacion"
-                            value={formState.observacion}
-                            onChange={(e) => handleInputChange(e)}
-                            maxLength={200}
-                            placeholder="Justifique la asignación..."
-                            isInvalid={errors.observacion}
-                        />
-                    </FormGroup>
-                    <Form.Text muted>
-                        {200 - formState.observacion.length} caracteres restantes
-                    </Form.Text>
+                    {formState.asignacion && formState.asignacion !== data[0]?.id_busuario && (
+                        <>
+                            <FormGroup>
+                                <SubtituloForm subtitulo={"Observación"} icon={FaNoteSticky} />
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="observacion"
+                                    value={formState.observacion}
+                                    onChange={(e) => handleInputChange(e)}
+                                    maxLength={200}
+                                    placeholder="Justifique la asignación..."
+                                    isInvalid={errors.observacion}
+                                />
+                            </FormGroup>
+                            <Form.Text muted>
+                                {200 - formState.observacion.length} caracteres restantes
+                            </Form.Text>
+                        </>
+                    )}
+
                 </>
             }
 
@@ -233,7 +274,7 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
             <AnexosSolicitante />
 
             <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyItems: "center" }}>
-                <SubtituloForm subtitulo={"¿Desea devolver el caso?"} icon={FaUser} />
+                <SubtituloForm subtitulo={"¿Desea devolver el caso?"} icon={IoArrowBackCircle} />
                 <FormGroup>
                     <Form.Check
                         type="switch"
@@ -248,20 +289,20 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
             {formState.devolucion && (
                 <div style={{ textAlign: "left" }}>
                     <FormGroup>
-                        <FormLabel>Observación de Devolución</FormLabel>
+                        <FormLabel>Observación o motivo de la devolución</FormLabel>
                         <Form.Control
                             as="textarea"
                             rows={3}
                             name="observacionDevolucion"
                             value={formState.observacionDevolucion}
                             onChange={(e) => handleInputChange(e)}
-                            maxLength={200}
+                            maxLength={400}
                             isInvalid={errors.observacionDevolucion}
                             required
                         />
                     </FormGroup>
                     <Form.Text muted>
-                        {200 - formState.observacionDevolucion.length} caracteres restantes
+                        {400 - formState.observacionDevolucion.length} caracteres restantes
                     </Form.Text>
                 </div>
             )}
@@ -281,4 +322,4 @@ const ModalAsignacionARiesgo: React.FC<Props> = ({ row, update, onHide }) => {
     );
 }
 
-export {ModalAsignacionARiesgo};
+export { ModalAsignacionARiesgo };

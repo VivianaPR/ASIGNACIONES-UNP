@@ -71,7 +71,7 @@ tbody, td, tfoot, th, thead, tr{
 }
 
 .anexo_item:hover{
-  background-color: #303D50;
+  background-color: #1272B7;
   color: white;
   transition: all 0.3s ease-in-out
 }
@@ -86,4 +86,16 @@ tbody, td, tfoot, th, thead, tr{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+.slide-up-down {
+  transition: max-height 0.8s ease-out, opacity 0.8s ease-out;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.slide-up-down.show {
+  max-height: 1000px;
+  opacity: 1;
 }
